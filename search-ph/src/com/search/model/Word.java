@@ -1,4 +1,11 @@
-package com.search.tfidf;
+package com.search.model;
+
+
+/**
+ * 
+ * @author AnhH1
+ *
+ */
 
 public class Word {
 	private Long 	wordId;
@@ -28,7 +35,7 @@ public class Word {
 	public boolean equals(Object obj) {
 		if (obj instanceof Word) {
 			Word word = (Word)obj;
-			if (word.getWord().equalsIgnoreCase(this.word) && word.getTypeWord().equalsIgnoreCase(this.typeWord)) {
+			if (word.getWord().equalsIgnoreCase(this.word)) {
 				return true;
 			}
 		}
