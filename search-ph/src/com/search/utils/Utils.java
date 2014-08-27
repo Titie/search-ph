@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import vn.hus.nlp.tagger.VietnameseMaxentTagger;
+
 import com.search.model.Document;
 import com.search.model.Word;
 
@@ -32,7 +34,9 @@ public class Utils {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		VietnameseMaxentTagger vietnameseMaxentTagger = new VietnameseMaxentTagger();
 		
+		List<WordTag> wordTags = vietnameseMaxentTagger.tagText2("Mãi mãi nhớ em");
 	}
 	
 	/**
@@ -148,11 +152,10 @@ public class Utils {
 			// STEP 5: Extract data from result set
 			while (rs.next()) {
 				// Retrieve by column name
-				Long id = rs.getLong("id");
-				String url = rs.getString("url");
-				String title = rs.getString("title");
-				String content = rs.getString("content");
-				//System.out.println("id = " + id + "--- title = " + title);
+				Long id 		= rs.getLong("id");
+				String url 		= rs.getString("url");
+				String title 	= rs.getString("title");
+				String content 	= rs.getString("content");
 				try {
 					Document document = new Document(id, title, content, url);
 					documents.add(document);
