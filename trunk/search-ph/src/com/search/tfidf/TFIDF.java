@@ -1,120 +1,75 @@
 package com.search.tfidf;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import com.search.model.Document;
 import com.search.model.Word;
-import com.search.utils.ConfigurationUtils;
+import com.search.utils.Constants;
 import com.search.utils.Utils;
 
 public class TFIDF {
-	private List<Document> documents;
-	private Integer totalDocument;
-	public static final String STOP_WORDS 	= "..\\search-ph\\resources\\stopword\\vn-stopwords.data";
-	static final String JDBC_DRIVER 		= ConfigurationUtils.getInstance().get("db.driver");
-	static final String DB_URL 				= ConfigurationUtils.getInstance().get("db.url");
-	static final String USER 				= ConfigurationUtils.getInstance().get("db.username");
-	static final String PASS 				= ConfigurationUtils.getInstance().get("db.password");
-
-	/**
-	 * This method will calculate TF-IDF for all words in the documents.
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		List<Word> stopwords = Utils.readWordInFile(STOP_WORDS);
-		TFIDF tfidf = new TFIDF();
-		tfidf.loadDataFromDB();
-		tfidf.removeStopWords(stopwords);
-		System.out.println(tfidf.getDocuments().size());
+	private List<Document> 	documents;
+	private List<Word> stopwords 		= Utils.readWordInFile(Constants.STOP_WORDS);
+	private List<Word> 		words		= new ArrayList<Word>();
+	
+	public TFIDF(List<Document> documents) {
+		this.documents = documents;
 	}
 
-	public static void loadDataFromFolder(String folderPath) {
-
-	}
-
-	
-	
 	/**
-	 * This method will remove all stop words in the all documents.
-	 * @param stopwords
+	 * This method will remove all stop words in all documents.
+	 * @param totalDocument ( = 0 -> use default value of total document)
 	 */
-	public void removeStopWords(List<Word> stopwords) {
-		System.out.println("------ REMOVE STOP WORDS ------ ");
+	public void processDocumentsAndCalculateTFIDF() {
+		System.out.println("------ REMOVE STOP WORDS FOR ALL DOCUMENT ------ ");
 		for (Document document : documents) {
 			document.getWords().removeAll(stopwords);
-			System.out.println(document.getWords());
+			//calculate IDF for word in the all document.
+			for (Word word : document.getWords()) {
+				Word w = new Word(0L, word.getWord(), word.getTypeWord(), 0L, 1);
+				addWordIntoWords(w);
+			}
 		}
+		
+		
+		//update IDF for each word in each document
+		for (Document document : documents) {
+			//calculate IDF for word in the all document.
+			for (Word word : document.getWords()) {
+				int wordId = words.indexOf(word);
+				word.setIdf(Math.log(documents.size()/words.get(wordId).getTf()));
+			}
+			Collections.sort(document.getWords());
+			System.out.println(document.getWords().subList(0, 10));
+		}
+		//System.out.println("word in the all document: " + words);
+	}
+	
+	
+	/**
+	 * This method will remove all stop words in the document.
+	 * @param stopwords
+	 */
+	public Document processQuery(Document document) {
+		System.out.println("------ REMOVE STOP WORDS FOR QUERY ------ ");
+		document.getWords().removeAll(stopwords);
+		return document;
 	}
 	
 	/**
-	 * This method is used to load data from database.
+	 * This method add word into word list.
+	 * @param word
 	 */
-	public void loadDataFromDB() {
-		documents = new ArrayList<Document>();
-		Connection conn = null;
-		Statement stmt = null;
-		try {
-			// STEP 2: Register JDBC driver
-			Class.forName("com.mysql.jdbc.Driver");
-
-			// STEP 3: Open a connection
-			System.out.println("Connecting to a selected database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			System.out.println("Connected database successfully...");
-
-			// STEP 4: Execute a query
-			System.out.println("Creating statement...");
-			stmt = conn.createStatement();
-
-			String sql = "SELECT id, url, title, content from Content where id < 10";
-			ResultSet rs = stmt.executeQuery(sql);
-			// STEP 5: Extract data from result set
-			while (rs.next()) {
-				// Retrieve by column name
-				Long id = rs.getLong("id");
-				String url = rs.getString("url");
-				String title = rs.getString("title");
-				String content = rs.getString("content");
-				System.out.println("id = " + id + "--- title = " + title);
-				try {
-					Document document = new Document(id, title, content, url);
-					documents.add(document);
-				} catch(Exception e) {
-					System.out.println("Has exception e --- ");
-				}
-				
-			}
-			totalDocument = documents.size();
-			rs.close();
-		} catch (SQLException se) {
-			// Handle errors for JDBC
-			se.printStackTrace();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					conn.close();
-			} catch (SQLException se) {
-			}// do nothing
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			}// end finally try
-		}// end try
+	public void addWordIntoWords(Word word) {
+		int index = words.indexOf(word);
+		if(index > 0) {
+			words.get(index).increaseOccurence();
+		} else {
+			words.add(word);
+		}
 	}
-
 	/* ********************** SETTER AND GETTER ************************ */
 
 	/**
@@ -131,20 +86,4 @@ public class TFIDF {
 	public void setDocuments(List<Document> documents) {
 		this.documents = documents;
 	}
-
-	/**
-	 * @return the totalDocument
-	 */
-	public Integer getTotalDocument() {
-		return totalDocument;
-	}
-
-	/**
-	 * @param totalDocument
-	 *            the totalDocument to set
-	 */
-	public void setTotalDocument(Integer totalDocument) {
-		this.totalDocument = totalDocument;
-	}
-
 }

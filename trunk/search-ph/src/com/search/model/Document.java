@@ -18,6 +18,7 @@ public class Document {
 	private String 	title;
 	private String 	content;
 	private String 	url;
+	
 	private List<Word> words = new ArrayList<>();
 	
 	/**
@@ -28,11 +29,11 @@ public class Document {
 	 * @param url
 	 */
 	public Document(Long id, String title, String content, String url) {
-		super();
 		this.id = id;
 		this.title = title;
 		this.content = content;
 		this.url = url;
+
 		loadWordsFromData();
 	}
 	
@@ -58,7 +59,7 @@ public class Document {
 	 */
 	private void addWordIntoWords(Word word) {
 		int index = words.indexOf(word);
-		if(index > 0) {
+		if(index > -1) {
 			words.get(index).increaseOccurence();
 		} else {
 			words.add(word);
