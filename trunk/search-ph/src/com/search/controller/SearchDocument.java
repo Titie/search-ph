@@ -18,10 +18,15 @@ public class SearchDocument {
 	
 	
 	public static void main(String[] args) {
+		long currentTime1 = System.currentTimeMillis();
 		List<Document> documents 		= Utils.loadDataFromDB();
+		System.out.println("TIME LOAD DATA = " + (System.currentTimeMillis() - currentTime1));
+		
 		SearchDocument searchDocument 	= new SearchDocument(documents);
+		long currentTime2 = System.currentTimeMillis();
 		TFIDF tfidf 					= new TFIDF(documents);
 		tfidf.processDocumentsAndCalculateTFIDF();
+		System.out.println("TIME TO PROCESS DATA = " + (System.currentTimeMillis() - currentTime2));
 		
 		String query 					= "Máy tính xách tay tosiba được công bố năm 2013";
 		List<Document> retrieval 		= searchDocument.searchDocument(query);
@@ -33,6 +38,7 @@ public class SearchDocument {
 	
 	public List<Document> searchDocument(String query) {
 		Document document 					= new Document(0L, "Query", query, "--This is query--");
+		
 		List<Document> documentRetrieval 	= new ArrayList<Document>();
 		
 		return documentRetrieval;
