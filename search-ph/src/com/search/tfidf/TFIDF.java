@@ -42,7 +42,10 @@ public class TFIDF {
 				word.setIdf(Math.log(documents.size()/words.get(wordId).getTf()));
 			}
 			Collections.sort(document.getWords());
-			System.out.println(document.getWords().subList(0, 10));
+			
+			if (document.getWords().size() > 10) {
+				System.out.println(document.getWords().subList(0, 10));
+			}
 		}
 		//System.out.println("word in the all document: " + words);
 	}
