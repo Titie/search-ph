@@ -1,27 +1,29 @@
 package com.search.model;
 
 
+
 /**
  * 
  * @author AnhH1
  *
  */
 
-public class Word {
+public class Word implements Comparable<Word>{
 	private Long 	wordId;
 	private String 	word;
 	private String 	typeWord;
 	private Long 	documentId;
-	private Integer occurence;
+	private Integer tf;
+	private Double idf = 0D;
+	private Double tfidf = 0D;
 	
-	
-	public Word(Long wordId, String word, String typeWord, Long documentId, Integer occurence) {
+	public Word(Long wordId, String word, String typeWord, Long documentId, Integer tf) {
 		super();
-		this.wordId = wordId;
-		this.word = word;
-		this.typeWord = typeWord;
+		this.wordId 	= wordId;
+		this.word 		= word;
+		this.typeWord 	= typeWord;
 		this.documentId = documentId;
-		this.occurence = occurence;
+		this.tf 		= tf;
 	}
 	
 	
@@ -35,7 +37,7 @@ public class Word {
 	public boolean equals(Object obj) {
 		if (obj instanceof Word) {
 			Word word = (Word)obj;
-			if (word.getWord().equalsIgnoreCase(this.word)) {
+			if (word.getWord().trim().equalsIgnoreCase(this.word)) {
 				return true;
 			}
 		}
@@ -44,14 +46,20 @@ public class Word {
 	
 	
 	public void increaseOccurence() {
-		occurence++;
+		tf++;
 	}
 	
 	@Override
 	public String toString() {
-		return "Word:" + word + " --- type of word:" + typeWord + " --- occurence:" + occurence + "\n";
+		return "Word:" + word + " ---type of word:" + typeWord + " ---TF:" + tf + "-----TF-IDF:" + getTfidf() +"\n";
 	}
 	
+	@Override
+	public int compareTo(Word arg0) {
+		if (arg0.getTfidf() > getTfidf()) return 1;
+		if (arg0.getTfidf() < getTfidf()) return -1;
+		return 0;
+	}
 	
 	/* ********************* SETTER AND GETTER **************************** */
 	
@@ -103,18 +111,53 @@ public class Word {
 	public void setDocumentId(Long documentId) {
 		this.documentId = documentId;
 	}
+
+
 	/**
-	 * @return the occurence
+	 * @return the tf
 	 */
-	public Integer getOccurence() {
-		return occurence;
+	public Integer getTf() {
+		return tf;
 	}
+
+
 	/**
-	 * @param occurence the occurence to set
+	 * @param tf the tf to set
 	 */
-	public void setOccurence(Integer occurence) {
-		this.occurence = occurence;
+	public void setTf(Integer tf) {
+		this.tf = tf;
 	}
-	
-	
+
+
+	/**
+	 * @return the idf
+	 */
+	public Double getIdf() {
+		return idf;
+	}
+
+
+	/**
+	 * @param idf the idf to set
+	 */
+	public void setIdf(Double idf) {
+		this.idf = idf;
+	}
+
+
+	/**
+	 * @return the tfidf
+	 */
+	public Double getTfidf() {
+		return getTf()*getIdf();
+	}
+
+
+	/**
+	 * @param tfidf the tfidf to set
+	 */
+	public void setTfidf(Double tfidf) {
+		this.tfidf = tfidf;
+	}
+
 }
