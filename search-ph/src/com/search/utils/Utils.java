@@ -96,7 +96,7 @@ public class Utils {
 			WordTag wordTag = new WordTag();
 			while((line = reader.readLine()) != null) {
 				wordTag.setWord(line);
-				Word word = new Word(null, line, null, null, 1);
+				Word word = new Word(null, line, null, null, 1D);
 				dataInLines.add(word);
 			}
 			reader.close();
@@ -147,7 +147,7 @@ public class Utils {
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
 
-			String sql = "SELECT id, url, title, content from Content where id";
+			String sql = "SELECT id, url, title, content from Content where id < 15";
 			ResultSet rs = stmt.executeQuery(sql);
 			// STEP 5: Extract data from result set
 			while (rs.next()) {

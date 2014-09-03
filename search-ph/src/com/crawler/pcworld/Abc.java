@@ -1,6 +1,14 @@
 package com.crawler.pcworld;
 
+import vn.hus.nlp.tokenizer.VietTokenizer;
+
 public class Abc {
+	
+	
+	public static void main(String[] args) {
+		VietTokenizer tokenizer = new VietTokenizer();
+
+	}
 	
 	private Boolean runNegative;
 

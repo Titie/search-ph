@@ -13,11 +13,11 @@ public class Word implements Comparable<Word>{
 	private String 	word;
 	private String 	typeWord;
 	private Long 	documentId;
-	private Integer tf;
-	private Double idf = 0D;
-	private Double tfidf = 0D;
+	private Double tf		= 0D;
+	private Double idf 		= 0D;
+	private Double tfidf 	= 0D;
 	
-	public Word(Long wordId, String word, String typeWord, Long documentId, Integer tf) {
+	public Word(Long wordId, String word, String typeWord, Long documentId, Double tf) {
 		super();
 		this.wordId 	= wordId;
 		this.word 		= word;
@@ -116,7 +116,7 @@ public class Word implements Comparable<Word>{
 	/**
 	 * @return the tf
 	 */
-	public Integer getTf() {
+	public Double getTf() {
 		return tf;
 	}
 
@@ -124,7 +124,7 @@ public class Word implements Comparable<Word>{
 	/**
 	 * @param tf the tf to set
 	 */
-	public void setTf(Integer tf) {
+	public void setTf(Double tf) {
 		this.tf = tf;
 	}
 
