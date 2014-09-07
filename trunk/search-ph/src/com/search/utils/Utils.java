@@ -134,6 +134,7 @@ public class Utils {
 		List<Document> documents = new ArrayList<Document>();
 		Connection conn = null;
 		Statement stmt = null;
+		List<String> ids = new ArrayList<String>();
 		try {
 			// STEP 2: Register JDBC driver
 			Class.forName("com.mysql.jdbc.Driver");
@@ -147,7 +148,7 @@ public class Utils {
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
 
-			String sql = "SELECT id, url, title, content from Content where id < 15";
+			String sql = "SELECT id, url, title, content from Content where id < 100";
 			ResultSet rs = stmt.executeQuery(sql);
 			// STEP 5: Extract data from result set
 			while (rs.next()) {
@@ -160,6 +161,8 @@ public class Utils {
 					Document document = new Document(id, title, content, url);
 					documents.add(document);
 				} catch(Exception e) {
+					System.out.println("DOCUMENT ID ERROR = " + id);
+					ids.add(id + "");
 					//System.out.println("Has exception e --- ");
 				}
 				
@@ -187,6 +190,12 @@ public class Utils {
 		}// end try
 		
 		System.out.println("LOAD DATA FROM DATABSE IS SUCCESSFUL WITH DATA SIZE = " + documents.size() + " document ( " + documents.toString().getBytes().length + "bytes)" );
+		System.out.println("\n ================ NEED DELETE RECORDS =============== + \n");
+		String queryDelete = "DELETE FROM CONTENT WHERE ";
+		for (String id : ids) {
+			queryDelete += " ID = " + id;
+		}
+		System.out.println("QUERY DELETE: " + queryDelete);
 		return documents;
 	}
 }

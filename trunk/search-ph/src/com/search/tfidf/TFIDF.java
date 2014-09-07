@@ -28,36 +28,41 @@ public class TFIDF {
 
 	/**
 	 * This method will remove all stop words in all documents.
+	 * see details in http://www.tfidf.com/
 	 * @param totalDocument ( = 0 -> use default value of total document)
 	 */
 	public void processDocumentsAndCalculateTFIDF() {
-		System.out.println("------ REMOVE STOP WORDS FOR ALL DOCUMENT ------ ");
+		
+		//remove stop words
 		for (Document document : documents) {
 			document.getWords().removeAll(stopwords);
-			//calculate IDF for word in the all document.
+		}
+		//end remove stop words
+		
+		//calculate word appear in all document (add to words)
+		for (Document document : documents) {
 			for (Word word : document.getWords()) {
 				Word w = new Word(0L, word.getWord(), word.getTypeWord(), 0L, 1D);
 				addWordIntoWords(w);
 			}
 		}
 		
-		
 		//update IDF for each word in each document
 		for (Document document : documents) {
 			//calculate IDF for word in the all document.
 			for (Word word : document.getWords()) {
-				int wordId = words.indexOf(word);
-				double idfWord = Math.log(documents.size()/words.get(wordId).getTf());
+				int wordId 		= words.indexOf(word);
+				double idfWord 	= Math.log(documents.size()/words.get(wordId).getTf());
 				
 				//set idf for word in each document
 				word.setIdf(idfWord);
-				
+				word.setProcessTF(word.getTf()/document.getWords().size());
 				words.get(wordId).setIdf(idfWord);
 			}
 			Collections.sort(document.getWords());
 			
 			if (document.getWords().size() > 10) {
-				//System.out.println(document.getWords().subList(0, 10));
+				System.out.println("url: " + document.getUrl() + "---" + document.getWords().subList(0, 10));
 			}
 		}
 		//System.out.println("word in the all document: " + words);
@@ -89,7 +94,8 @@ public class TFIDF {
 			//System.out.println("INDEX ========== " + index);
 			if (index > -1) {
 				wordQ.setIdf(words.get(index).getIdf());
-				wordQ.setTf(wordQ.getTf()/maximumFrequency);
+				wordQ.setProcessTF(wordQ.getTf()/maximumFrequency);
+				//wordQ.setTf(wordQ.getTf()/maximumFrequency);
 				//System.out.println("IDF: " + words.get(index).getIdf());
 			}
 		}

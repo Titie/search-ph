@@ -16,7 +16,7 @@ public class Word implements Comparable<Word>{
 	private Double tf		= 0D;
 	private Double idf 		= 0D;
 	private Double tfidf 	= 0D;
-	
+	private Double processTF= 0D;
 	public Word(Long wordId, String word, String typeWord, Long documentId, Double tf) {
 		super();
 		this.wordId 	= wordId;
@@ -149,7 +149,7 @@ public class Word implements Comparable<Word>{
 	 * @return the tfidf
 	 */
 	public Double getTfidf() {
-		return getTf()*getIdf();
+		return getProcessTF()*getIdf();
 	}
 
 
@@ -158,6 +158,22 @@ public class Word implements Comparable<Word>{
 	 */
 	public void setTfidf(Double tfidf) {
 		this.tfidf = tfidf;
+	}
+
+
+	/**
+	 * @return the processTF
+	 */
+	public Double getProcessTF() {
+		return processTF;
+	}
+
+
+	/**
+	 * @param processTF the processTF to set
+	 */
+	public void setProcessTF(Double processTF) {
+		this.processTF = processTF;
 	}
 
 }
