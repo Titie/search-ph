@@ -1,8 +1,8 @@
 package com.search.ontology;
 
 import java.io.File;
-import java.io.ObjectInputStream.GetField;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,7 +11,9 @@ import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLDataFactory;
 import org.semanticweb.owlapi.model.OWLException;
+import org.semanticweb.owlapi.model.OWLIndividual;
 import org.semanticweb.owlapi.model.OWLNamedIndividual;
+import org.semanticweb.owlapi.model.OWLObjectProperty;
 import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
@@ -27,139 +29,180 @@ import org.semanticweb.owlapi.util.SimpleIRIMapper;
 
 
 /**
- * This class manager ontology: access to read individual and relate with other individual.
+ * This class i will define some method to access to ontology, individual and object properties.
+ * 
  * @author HoangAnh
+ * 
+ * @created 2014-09-09
  *
  */
 public class OntologyManager {
-
-	
-	private static final String PIZZA_IRI = "http://130.88.198.11/co-ode-files/ontologies/pizza.owl";
+	//define computer ontology
 	private static final String COMPUTER_ONTOLOGY_FILE = "D:\\Java\\workspace\\search-ph\\ontology\\computer-ontology.owl";
-	public static void main(String[] args) throws OWLException {
-		System.out.println("TEST READ ONTOLOGY");
-		
-		OWLOntology ontology = loadOntology(COMPUTER_ONTOLOGY_FILE);
-		
-//		Set<OWLClass> classes =  ontology.getClassesInSignature();
-//		Iterator<OWLClass> iterator = classes.iterator();
-//		while (iterator.hasNext()) {
-//			OWLClass owlClass = iterator.next();
-//			System.out.println(owlClass.getClassesInSignature());
-//		}
-//		System.out.println(classes.size());
-		System.out.println("END TEST");
+	
+	//define object properties.
+	private static final String IS_INDIVIDUAL_OF = "http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#is_individual_of";
+	private static final String IS_PART_OF 		= "http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#is_part_of";
+	private static final String IS_PRODUCT_OF   = "http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#is_product_of";
+	//end define object properties
+	
+	private static final List<String> OBJECT_PROPERTIES_LIST = new ArrayList<String>();
+	
+	private static OWLOntologyManager manager 	= null;
+	private static OWLOntology ont 				= null;
+	private static OWLDataFactory fac 			= null;
+	private static OWLReasoner reasoner 		= null;
+	
+	static {
+		System.out.println("================================== INIT ONTOLOGY ============");
+		OBJECT_PROPERTIES_LIST.add(IS_INDIVIDUAL_OF);
+		OBJECT_PROPERTIES_LIST.add(IS_PART_OF);
+		OBJECT_PROPERTIES_LIST.add(IS_PRODUCT_OF);
+		manager 					= OWLManager.createOWLOntologyManager();
+		File file 					= new File(COMPUTER_ONTOLOGY_FILE);
+		fac 						= manager.getOWLDataFactory();
+		try {
+			ont 							= manager.loadOntologyFromOntologyDocument(file);
+		} catch (OWLOntologyCreationException e) {
+			e.printStackTrace();
+			System.out.println("=============================== INIT ONTOLOGY HAS EXCEPTION ============");
+		}
+		OWLReasonerFactory reasonerFactory 			= new StructuralReasonerFactory();
+		ConsoleProgressMonitor progressMonitor 		= new ConsoleProgressMonitor();
+		OWLReasonerConfiguration config 			= new SimpleConfiguration(progressMonitor);
+		reasoner 									= reasonerFactory.createReasoner(ont, config);
+		System.out.println("=================================== INIT ONTOLOGY HAS NOT EXCEPTION ============");
 	}
 	
 	
+	/**
+	 * This function to test methods.
+	 * @param args
+	 * @throws OWLException
+	 */
+	public static void main(String[] args) throws OWLException {
+		System.out.println("TEST READ ONTOLOGY");
+		//testOWLAPI();
+		System.out.println("END TEST: ");
+	}
 	
-	public static OWLOntology loadOntology(String pathfile) throws OWLOntologyCreationException {
-		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-		File file = new File(pathfile);
-		OWLOntology ont = manager.loadOntologyFromOntologyDocument(file);
+	
+	/**
+	 * This main method is used to test owl api.
+	 * @throws OWLException
+	 */
+	public static void testOWLAPI() throws OWLException {
 		
-		System.out.println("Loaded: " + ont.getOntologyID());
-		
-		OWLReasonerFactory reasonerFactory = new StructuralReasonerFactory();
-		ConsoleProgressMonitor progressMonitor = new ConsoleProgressMonitor();
-		OWLReasonerConfiguration config = new SimpleConfiguration(progressMonitor);
-		OWLReasoner reasoner = reasonerFactory.createReasoner(ont, config);
-		reasoner.precomputeInferences();
-		boolean consistent = reasoner.isConsistent();
-		System.out.println("Consistent: " + consistent);
-		Node<OWLClass> bottomNode = reasoner.getUnsatisfiableClasses();
-		Set<OWLClass> unsatisfiable = bottomNode.getEntitiesMinusBottom();
-		if (!unsatisfiable.isEmpty()) {
-			System.out.println("The following classes are unsatisfiable: ");
-			for (OWLClass cls : unsatisfiable) {
-				System.out.println(" " + cls);
-			}
-		} else {
-			System.out.println("There are no unsatisfiable classes");
-		}
-		
-		
-		OWLDataFactory fac = manager.getOWLDataFactory();
-		OWLClass BMC = fac.getOWLClass(IRI.create("http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Bo_Mạch_Chủ"));
-		OWLClass HDH = fac.getOWLClass(IRI.create("http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Hệ_Điều_Hành"));
-		
-		NodeSet<OWLClass> subClsesBMC = reasoner.getSubClasses(BMC, true);
-		
-		Set<OWLClass> clses = subClsesBMC.getFlattened();
-		System.out.println("Subclasses of BMC: ");
-		for (OWLClass cls : clses) {
-			System.out.println(" " + cls);
-		}
-		System.out.println("\n");
-		
-		
-		NodeSet<OWLClass> subClsesHDH = reasoner.getSubClasses(HDH, true);
-		
-		Set<OWLClass> clsesHDH = subClsesHDH.getFlattened();
-		System.out.println("Subclasses of HDH: ");
-		for (OWLClass cls : clsesHDH) {
-			System.out.println(" " + cls);
-			
-			NodeSet<OWLNamedIndividual> individualsNodeSet = reasoner.getInstances(cls, true);
-			Set<OWLNamedIndividual> individuals = individualsNodeSet.getFlattened();
-			System.out.println("Instances of zz: ");
-			for (OWLNamedIndividual ind : individuals) {
-				System.out.println(" " + ind);
-			}
-			System.out.println("\n");
-		
-		}
-		System.out.println("\n");
-		
-		return ont;
 	}
 	
 	/**
-	 * The examples here show how to load ontologies.
-	 * 
+	 * This method is used to get {@link Set} {@link OWLIndividual} has relation with individual.
+	 * @param individual
+	 * @return
+	 * @throws OWLException
+	 */
+	public static Set<OWLNamedIndividual> getIRIOfIndividualByObjectProperties(String individual) throws OWLException {
+		OWLNamedIndividual individ 		= getIRIOfIndividual(individual);
+		Set<OWLNamedIndividual> values 	= new HashSet<OWLNamedIndividual>();
+		for (String iriObjectProperty : OBJECT_PROPERTIES_LIST) {
+			OWLObjectProperty oProperty 	= fac.getOWLObjectProperty(IRI.create(iriObjectProperty));
+			NodeSet<OWLNamedIndividual> valuesNodeSet 	= reasoner.getObjectPropertyValues(individ, oProperty);
+			values.addAll(valuesNodeSet.getFlattened());
+		}
+		return values;
+	}
+	
+	/**
+	 * This method is used to get {@link Set} {@link OWLIndividual} has iriObjectProperties relation with individual.
+	 * @param individual
+	 * @param iriObjectProperties
+	 * @return
+	 * @throws OWLException
+	 */
+	public static Set<OWLNamedIndividual> getIRIOfIndividualByObjectProperties(String individual, String iriObjectProperties) throws OWLException {
+		OWLNamedIndividual individ 		= getIRIOfIndividual(individual);
+		OWLObjectProperty oProperty 	= fac.getOWLObjectProperty(IRI.create(iriObjectProperties));
+		NodeSet<OWLNamedIndividual> valuesNodeSet 	= reasoner.getObjectPropertyValues(individ, oProperty);
+		Set<OWLNamedIndividual> values 				= valuesNodeSet.getFlattened();
+		return values;
+	}
+	
+	
+	/**
+	 * This method will get all individuals in the same class by one individual.
+	 * @param individual
+	 * @return
+	 * @throws OWLException
+	 */
+	public static Set<OWLNamedIndividual> getIndividualsInSameClassByOneIndividual(String individual) throws OWLException {
+		OWLClass owlClass 								= getOWLClassByIndividua(individual);
+		NodeSet<OWLNamedIndividual> individualsNodeSet 	= reasoner.getInstances(owlClass, true);
+		Set<OWLNamedIndividual> owlNamedIndividuals 	= individualsNodeSet.getFlattened();
+		return owlNamedIndividuals;
+	}
+	
+	
+	/**
+	 * This method check individual is contained in my ontology.
+	 * @param individual
+	 * @return <code>true</code> if ontology has individual else return <code>false</code>
 	 * @throws OWLOntologyCreationException
 	 */
-	public static void shouldLoad() throws OWLOntologyCreationException {
-		// Get hold of an ontology manager
-		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
-		// Let's load an ontology from the web
-		IRI iri = IRI.create(PIZZA_IRI);
-		OWLOntology pizzaOntology = manager.loadOntologyFromOntologyDocument(iri);
-		System.out.println("Loaded ontology: " + pizzaOntology);
-		// Remove the ontology so that we can load a local copy.
-		manager.removeOntology(pizzaOntology);
-		// We can also load ontologies from files. Download the pizza ontology
-		// from http://owl.cs.manchester.ac.uk/co-ode-files/ontologies/pizza.owl
-		// and put it
-		// somewhere on your hard drive Create a file object that points to the
-		// local copy
-		File file = new File("/ontology/pizza.owl");
-		System.out.println("FILE LOAD:" + file.getAbsolutePath());
-		// Now load the local copy
-		OWLOntology localPizza = manager.loadOntologyFromOntologyDocument(file);
-		System.out.println("Loaded ontology: " + localPizza);
-		// We can always obtain the location where an ontology was loaded from
-		IRI documentIRI = manager.getOntologyDocumentIRI(localPizza);
-		System.out.println(" from: " + documentIRI);
-		// Remove the ontology again so we can reload it later
-		manager.removeOntology(pizzaOntology);
-		// In cases where a local copy of one of more ontologies is used, an
-		// ontology IRI mapper can be used to provide a redirection mechanism.
-		// This means that ontologies can be loaded as if they were located on
-		// the web. In this example, we simply redirect the loading from
-		// http://owl.cs.manchester.ac.uk/co-ode-files/ontologies/pizza.owl to
-		// our local copy
-		// above.
-		manager.addIRIMapper(new SimpleIRIMapper(iri, IRI.create(file)));
-		// Load the ontology as if we were loading it from the web (from its
-		// ontology IRI)
-		IRI pizzaOntologyIRI = IRI.create("http://owl.cs.manchester.ac.uk/co-ode-files/ontologies/pizza.owl");
-		OWLOntology redirectedPizza = manager.loadOntology(pizzaOntologyIRI);
-		System.out.println("Loaded ontology: " + redirectedPizza);
-		System.out.println(" from: "
-				+ manager.getOntologyDocumentIRI(redirectedPizza));
-		// Note that when imports are loaded an ontology manager will be
-		// searched for mappings
+	public static boolean checkOntologyHasIndividua(String individual) throws OWLException {
+		if (individual == null || individual == "") return false;
+		
+		//format value of individual
+		individual = individual.trim().replace(" ", "_").toUpperCase();
+		Set<OWLNamedIndividual> owlNamedIndividuals = ont.getIndividualsInSignature();
+		
+		for (OWLNamedIndividual owlNamedIndividual : owlNamedIndividuals) {
+			if (owlNamedIndividual.getIRI().getFragment().trim().equalsIgnoreCase(individual)) return true;
+		}
+		
+		return false;
+	}
+	
+	/**
+	 * This method get {@link OWLNamedIndividual} by individual value.
+	 * @param individual
+	 * @return OWLNamedIndividual if ontology has individual value else return null.
+	 * @throws OWLOntologyCreationException
+	 */
+	public static OWLNamedIndividual getIRIOfIndividual(String individual) throws OWLException {
+		if (individual == null || individual == "") return null;
+		
+		individual 									= individual.trim().replace(" ", "_").toUpperCase();		
+		Set<OWLNamedIndividual> owlNamedIndividuals = ont.getIndividualsInSignature();
+		
+		for (OWLNamedIndividual owlNamedIndividual : owlNamedIndividuals) {
+			if (owlNamedIndividual.getIRI().getFragment().trim().equalsIgnoreCase(individual)) return owlNamedIndividual;
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * This method will get {@link OWLClass} by individual.
+	 * @param individual
+	 * @return
+	 * @throws OWLException
+	 */
+	public static OWLClass getOWLClassByIndividua(String individual) throws OWLException {
+		if (individual == null || individual == "") return null;
+		
+		//format value of individual
+		individual = individual.trim().replace(" ", "_").toUpperCase();
+		
+		Set<OWLClass> owlClasses 					= ont.getClassesInSignature();
+		
+		for (OWLClass owlClass : owlClasses) {
+			NodeSet<OWLNamedIndividual> individualsNodeSet = reasoner.getInstances(owlClass, true);
+			Set<OWLNamedIndividual> owlNamedIndividuals = individualsNodeSet.getFlattened();
+			for (OWLNamedIndividual owlNamedIndividual : owlNamedIndividuals) {
+				if (owlNamedIndividual.getIRI().getFragment().trim().equalsIgnoreCase(individual)) return owlClass;
+			}
+		}
+		return null;
 	}
 	
 }
