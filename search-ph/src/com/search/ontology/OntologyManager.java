@@ -18,14 +18,12 @@ import org.semanticweb.owlapi.model.OWLOntology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyManager;
 import org.semanticweb.owlapi.reasoner.ConsoleProgressMonitor;
-import org.semanticweb.owlapi.reasoner.Node;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
 import org.semanticweb.owlapi.reasoner.OWLReasonerConfiguration;
 import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 import org.semanticweb.owlapi.reasoner.SimpleConfiguration;
 import org.semanticweb.owlapi.reasoner.structural.StructuralReasonerFactory;
-import org.semanticweb.owlapi.util.SimpleIRIMapper;
 
 
 /**
@@ -37,15 +35,18 @@ import org.semanticweb.owlapi.util.SimpleIRIMapper;
  *
  */
 public class OntologyManager {
+	
 	//define computer ontology
-	private static final String COMPUTER_ONTOLOGY_FILE = "D:\\Java\\workspace\\search-ph\\ontology\\computer-ontology.owl";
+	//private static final String COMPUTER_ONTOLOGY_FILE = "D:\\Java\\workspace\\search-ph\\ontology\\computer-ontology.owl";
+	private static final String COMPUTER_ONTOLOGY_FILE = "D:\\Java\\part\\VNM\\workspace-172.21.1.145\\search-ph\\ontology\\computer-ontology.owl";
 	
 	//define object properties.
 	private static final String IS_INDIVIDUAL_OF = "http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#is_individual_of";
 	private static final String IS_PART_OF 		= "http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#is_part_of";
 	private static final String IS_PRODUCT_OF   = "http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#is_product_of";
-	//end define object properties
 	
+	
+	//end define object properties
 	private static final List<String> OBJECT_PROPERTIES_LIST = new ArrayList<String>();
 	
 	private static OWLOntologyManager manager 	= null;
@@ -54,7 +55,7 @@ public class OntologyManager {
 	private static OWLReasoner reasoner 		= null;
 	
 	static {
-		System.out.println("================================== INIT ONTOLOGY ============");
+		System.out.println("================================== START --- INIT ONTOLOGY ============");
 		OBJECT_PROPERTIES_LIST.add(IS_INDIVIDUAL_OF);
 		OBJECT_PROPERTIES_LIST.add(IS_PART_OF);
 		OBJECT_PROPERTIES_LIST.add(IS_PRODUCT_OF);
@@ -71,7 +72,7 @@ public class OntologyManager {
 		ConsoleProgressMonitor progressMonitor 		= new ConsoleProgressMonitor();
 		OWLReasonerConfiguration config 			= new SimpleConfiguration(progressMonitor);
 		reasoner 									= reasonerFactory.createReasoner(ont, config);
-		System.out.println("=================================== INIT ONTOLOGY HAS NOT EXCEPTION ============");
+		System.out.println("=================================== END ---- INIT ONTOLOGY HAS NOT EXCEPTION ============");
 	}
 	
 	
@@ -105,7 +106,7 @@ public class OntologyManager {
 		OWLNamedIndividual individ 		= getIRIOfIndividual(individual);
 		Set<OWLNamedIndividual> values 	= new HashSet<OWLNamedIndividual>();
 		for (String iriObjectProperty : OBJECT_PROPERTIES_LIST) {
-			OWLObjectProperty oProperty 	= fac.getOWLObjectProperty(IRI.create(iriObjectProperty));
+			OWLObjectProperty oProperty 				= fac.getOWLObjectProperty(IRI.create(iriObjectProperty));
 			NodeSet<OWLNamedIndividual> valuesNodeSet 	= reasoner.getObjectPropertyValues(individ, oProperty);
 			values.addAll(valuesNodeSet.getFlattened());
 		}
