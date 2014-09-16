@@ -123,7 +123,7 @@ public class TFIDF {
 	 */
 	public void addWordIntoWords(Word word) {
 		int index = words.indexOf(word);
-		if(index > 0) {
+		if(index > -1) {
 			words.get(index).increaseOccurence();
 		} else {
 			words.add(word);
@@ -161,4 +161,23 @@ public class TFIDF {
 	public void setQuery(Document query) {
 		this.query = query;
 	}
+
+
+	/**
+	 * @return the words
+	 */
+	public List<Word> getWords() {
+		Collections.sort(words);
+		return words;
+	}
+
+
+	/**
+	 * @param words the words to set
+	 */
+	public void setWords(List<Word> words) {
+		this.words = words;
+	}
+	
+	
 }

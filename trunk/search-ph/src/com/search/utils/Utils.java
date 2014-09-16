@@ -36,7 +36,8 @@ public class Utils {
 	public static void main(String[] args) {
 		VietnameseMaxentTagger vietnameseMaxentTagger = new VietnameseMaxentTagger();
 		
-		List<WordTag> wordTags = vietnameseMaxentTagger.tagText2("Mãi mãi nhớ em");
+		List<WordTag> wordTags = vietnameseMaxentTagger.tagText2("Phiên bản Surface Pro 3 có bộ xử lý Intel Core i5, RAM 8GB và ổ cứng SSD 256GB. Microsoft cũng kèm theo Type Cover, là loại bàn phím được thiết kế riêng cho máy tính bảng này, cũng có chức năng làm vỏ bảo vệ, và thường được bán riêng.");
+		System.out.println(wordTags);
 	}
 	
 	/**
@@ -148,7 +149,7 @@ public class Utils {
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
 
-			String sql = "SELECT id, url, title, content from Content where id < 100";
+			String sql = "SELECT id, url, title, content from document";
 			ResultSet rs = stmt.executeQuery(sql);
 			// STEP 5: Extract data from result set
 			while (rs.next()) {
@@ -197,5 +198,43 @@ public class Utils {
 		}
 		System.out.println("QUERY DELETE: " + queryDelete);
 		return documents;
+	}
+	
+	public static void saveWordInToDataBase(List<Document> documents) {
+		try {
+			Connection connection = null;
+			Class.forName("com.mysql.jdbc.Driver");
+			String db = "jdbc:mysql://localhost:3306/searchdata?useUnicode=true&characterEncoding=utf-8&autoReconnect=true";
+			String user = "root";
+			String password = "123456";
+			connection = DriverManager.getConnection(db, user, password);
+			Statement stmt = connection.createStatement();
+			for (Document document : documents) {
+				for (Word word : document.getWords()) {
+					String sqlInsertComposer = "INSERT INTO word ( word, frequency, documentid, typeOfWord ) VALUES ('"+word.getWord()+"','"+word.getTf()+"','"+word.getDocumentId()+"','"+word.getTypeWord()+"')";
+					stmt.execute(sqlInsertComposer);
+				}
+			}
+		} catch(Exception e) {
+			System.out.println("Has exception when data is inserted into the database: " + e);
+		} 
+	}
+	
+	public static void saveTFIDFWordInToDataBase(List<Word> words) {
+		try {
+			Connection connection = null;
+			Class.forName("com.mysql.jdbc.Driver");
+			String db = "jdbc:mysql://localhost:3306/searchdata?useUnicode=true&characterEncoding=utf-8&autoReconnect=true";
+			String user = "root";
+			String password = "123456";
+			connection = DriverManager.getConnection(db, user, password);
+			Statement stmt = connection.createStatement();
+			for (Word word : words) {
+				String sqlInsertComposer = "INSERT INTO tfidf_word ( word, typeOfWord, idf) VALUES ('"+word.getWord()+"','"+word.getTypeWord()+"','"+word.getIdf()+"')";
+				stmt.execute(sqlInsertComposer);
+			}
+		} catch(Exception e) {
+			System.out.println("Has exception when data is inserted into the database: " + e);
+		} 
 	}
 }

@@ -1,9 +1,6 @@
 package com.search.controller;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -57,19 +54,26 @@ public class SearchDocument {
 		List<Document> documents 		= Utils.loadDataFromDB();
 		System.out.println("TIME LOAD DATA = " + (System.currentTimeMillis() - currentTime1));
 		
-		SearchDocument searchDocument 	= new SearchDocument(documents);
-		
 		long currentTime2 				= System.currentTimeMillis();
 		
+		System.out.println("TIME SAVE DATA = " + (System.currentTimeMillis() - currentTime2));
+		SearchDocument searchDocument 	= new SearchDocument(documents);
+//		
+//		long currentTime2 				= System.currentTimeMillis();
+//		
 		TFIDF tfidf 					= new TFIDF(documents);
 		tfidf.processDocumentsAndCalculateTFIDF();
 		
-		System.out.println("TIME TO PROCESS DATA = " + (System.currentTimeMillis() - currentTime2));
+		Utils.saveWordInToDataBase(tfidf.getDocuments());
+		Utils.saveTFIDFWordInToDataBase(tfidf.getWords());
 		
-		String query 					= "Toshiba giới thiệu máy Satellite";
-		List<Document> retrieval 		= new ArrayList<Document>();
-		retrieval 						= searchDocument.searchDocument(query, tfidf);
-		System.out.println("search result: \n" + retrieval.subList(0, 10));
+		System.out.println("TIME TO PROCESS DATA = " + (System.currentTimeMillis() - currentTime2));
+//		
+//		String query 					= "Toshiba giới thiệu máy Satellite";
+//		List<Document> retrieval 		= new ArrayList<Document>();
+//		retrieval 						= searchDocument.searchDocument(query, tfidf);
+//		System.out.println("search result: \n" + retrieval);
+//		System.out.println(tfidf.getWords());
 //		BufferedReader in = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
 //		boolean isContinue = true;
 //		while (isContinue) {

@@ -63,7 +63,7 @@ public class OntologyManager {
 		File file 					= new File(COMPUTER_ONTOLOGY_FILE);
 		fac 						= manager.getOWLDataFactory();
 		try {
-			ont 							= manager.loadOntologyFromOntologyDocument(file);
+			ont 					= manager.loadOntologyFromOntologyDocument(file);
 		} catch (OWLOntologyCreationException e) {
 			e.printStackTrace();
 			System.out.println("=============================== INIT ONTOLOGY HAS EXCEPTION ============");
@@ -83,7 +83,7 @@ public class OntologyManager {
 	 */
 	public static void main(String[] args) throws OWLException {
 		System.out.println("TEST READ ONTOLOGY");
-		//testOWLAPI();
+		testOWLAPI();
 		System.out.println("END TEST: ");
 	}
 	
@@ -93,7 +93,7 @@ public class OntologyManager {
 	 * @throws OWLException
 	 */
 	public static void testOWLAPI() throws OWLException {
-		
+		System.out.println(getAllIndividualsName());
 	}
 	
 	/**
@@ -162,6 +162,22 @@ public class OntologyManager {
 		
 		return false;
 	}
+	
+	/**
+	 * This method is used to get all individualsName.
+	 * @return
+	 */
+	public static List<String> getAllIndividualsName() {
+		Set<OWLNamedIndividual> owlNamedIndividuals = ont.getIndividualsInSignature();
+		List<String> individualNameList = new ArrayList<String>();
+		if (owlNamedIndividuals != null) {
+			for (OWLNamedIndividual owlNamedIndividual : owlNamedIndividuals) {
+				individualNameList.add(owlNamedIndividual.getIRI().getFragment().trim());
+			}
+		}
+		return individualNameList;
+	}
+	
 	
 	/**
 	 * This method get {@link OWLNamedIndividual} by individual value.
