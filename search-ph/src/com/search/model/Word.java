@@ -51,13 +51,13 @@ public class Word implements Comparable<Word>{
 	
 	@Override
 	public String toString() {
-		return "Word:" + word + " ---type of word:" + typeWord + " ---TF:" + tf + "-----TF-IDF:" + getTfidf() +"\n";
+		return "Word:" + word + ":---type of word:" + typeWord + " ---TF:" + tf + " ---IDF:" + getIdf() + "-----TF-IDF:" + getTfidf() +"\n";
 	}
 	
 	@Override
 	public int compareTo(Word arg0) {
-		if (arg0.getTfidf() > getTfidf()) return 1;
-		if (arg0.getTfidf() < getTfidf()) return -1;
+		if (arg0.getIdf() > getIdf()) return 1;
+		if (arg0.getIdf() < getIdf()) return -1;
 		return 0;
 	}
 	
