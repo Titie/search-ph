@@ -36,7 +36,7 @@ public class Utils {
 	public static void main(String[] args) {
 		VietnameseMaxentTagger vietnameseMaxentTagger = new VietnameseMaxentTagger();
 		
-		List<WordTag> wordTags = vietnameseMaxentTagger.tagText2("Phiên bản Surface Pro 3 có bộ xử lý Intel Core i5, RAM 8GB và ổ cứng SSD 256GB. Microsoft cũng kèm theo Type Cover, là loại bàn phím được thiết kế riêng cho máy tính bảng này, cũng có chức năng làm vỏ bảo vệ, và thường được bán riêng.");
+		List<WordTag> wordTags = vietnameseMaxentTagger.tagText2("HP Probook 440 - Black. Microsoft cũng kèm theo Type Cover, là loại bàn phím được thiết kế riêng cho máy tính bảng này, cũng có chức năng làm vỏ bảo vệ, và thường được bán riêng.");
 		System.out.println(wordTags);
 	}
 	
