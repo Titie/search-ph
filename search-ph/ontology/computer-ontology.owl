@@ -59,6 +59,22 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ACER -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ACER">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ASUS -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ASUS">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Bo_Mạch_Chủ -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Bo_Mạch_Chủ">
@@ -147,6 +163,22 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#DELL -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#DELL">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#HP -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#HP">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Hãng_Sản_Xuât -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Hãng_Sản_Xuât"/>
@@ -161,10 +193,42 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Inspiron -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Inspiron">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#DELL"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#LENOVO -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#LENOVO">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Latitude -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Latitude">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#DELL"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Linux -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Linux">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Hệ_Điều_Hành"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#MSI -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#MSI">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
     </owl:Class>
     
 
@@ -207,6 +271,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Pavilion -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Pavilion">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#HP"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Phần_Cứng -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Phần_Cứng">
@@ -226,10 +298,50 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Probook -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Probook">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#HP"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#SAMSUNG -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#SAMSUNG">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#SONY -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#SONY">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#TOSHIBA -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#TOSHIBA">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Thùng_Máy -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Thùng_Máy">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Phần_Cứng"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#VOSTRO -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#VOSTRO">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#DELL"/>
     </owl:Class>
     
 
@@ -463,6 +575,14 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Ubuntu">
         <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Linux"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Windows -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Windows">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Windows"/>
     </owl:NamedIndividual>
     
 
