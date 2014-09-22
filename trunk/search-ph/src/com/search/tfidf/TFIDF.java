@@ -10,6 +10,26 @@ import com.search.utils.Constants;
 import com.search.utils.Utils;
 
 public class TFIDF {
+	
+	public static void main(String[] args) {
+		
+		long currentTime1 				= System.currentTimeMillis();
+		List<Document> documents 		= Utils.loadDataFromDB();
+		System.out.println("TIME LOAD DATA = " + (System.currentTimeMillis() - currentTime1));
+		
+		long currentTime2 				= System.currentTimeMillis();
+		
+		TFIDF tfidf 					= new TFIDF(documents);
+		
+		tfidf.processDocumentsAndCalculateTFIDF();
+		
+		Utils.saveWordInToDataBase(tfidf.getDocuments());
+		Utils.saveTFIDFWordInToDataBase(tfidf.getWords());
+		
+		System.out.println("TIME TO PROCESS DATA = " + (System.currentTimeMillis() - currentTime2));
+	}
+	
+	
 	private List<Document> 	documents;
 	private List<Word> stopwords 		= Utils.readWordInFile(Constants.STOP_WORDS);
 	private List<Word> 		words		= new ArrayList<Word>();
