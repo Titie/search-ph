@@ -15,8 +15,10 @@ public class Word implements Comparable<Word>{
 	private Long 	documentId;
 	private Double tf		= 0D;
 	private Double idf 		= 0D;
+	
 	private Double tfidf 	= 0D;
 	private Double processTF= 0D;
+	
 	public Word(Long wordId, String word, String typeWord, Long documentId, Double tf) {
 		super();
 		this.wordId 	= wordId;
