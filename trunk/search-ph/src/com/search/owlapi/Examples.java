@@ -160,10 +160,8 @@ public class Examples {
 		// Get hold of an ontology manager
 		OWLOntologyManager manager = OWLManager.createOWLOntologyManager();
 		// Let's load an ontology from the web
-		IRI iri = IRI
-				.create("http://owl.cs.manchester.ac.uk/co-ode-files/ontologies/pizza.owl");
-		OWLOntology pizzaOntology = manager
-				.loadOntologyFromOntologyDocument(iri);
+		IRI iri = IRI.create("http://owl.cs.manchester.ac.uk/co-ode-files/ontologies/pizza.owl");
+		OWLOntology pizzaOntology = manager.loadOntologyFromOntologyDocument(iri);
 		System.out.println("Loaded ontology: " + pizzaOntology);
 		// Remove the ontology so that we can load a local copy.
 		manager.removeOntology(pizzaOntology);

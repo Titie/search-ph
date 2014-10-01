@@ -194,7 +194,7 @@ public class Utils {
 		System.out.println("\n ================ NEED DELETE RECORDS =============== + \n");
 		String queryDelete = "DELETE FROM CONTENT WHERE ";
 		for (String id : ids) {
-			queryDelete += " ID = " + id;
+			queryDelete += " ID = " + id + " AND ";
 		}
 		System.out.println("QUERY DELETE: " + queryDelete);
 		return documents;

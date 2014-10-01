@@ -19,12 +19,12 @@ public class TFIDF {
 		
 		long currentTime2 				= System.currentTimeMillis();
 		
-		TFIDF tfidf 					= new TFIDF(documents);
+		//TFIDF tfidf 					= new TFIDF(documents);
 		
-		tfidf.processDocumentsAndCalculateTFIDF();
+		//tfidf.processDocumentsAndCalculateTFIDF();
 		
-		Utils.saveWordInToDataBase(tfidf.getDocuments());
-		Utils.saveTFIDFWordInToDataBase(tfidf.getWords());
+		//Utils.saveWordInToDataBase(tfidf.getDocuments());
+		//Utils.saveTFIDFWordInToDataBase(tfidf.getWords());
 		
 		System.out.println("TIME TO PROCESS DATA = " + (System.currentTimeMillis() - currentTime2));
 	}
