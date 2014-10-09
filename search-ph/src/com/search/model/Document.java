@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.hus.nlp.tagger.VietnameseMaxentTagger;
-import vn.hus.nlp.tokenizer.VietTokenizer;
 import edu.stanford.nlp.ling.WordTag;
 
 
@@ -21,6 +20,8 @@ public class Document implements Comparable<Document> {
 	private String 	url;
 	private Double 	cosinWithQuery = 0D;
 	private Double documentLeng = 0D;
+	private boolean semanticIndex;
+	
 	
 	private List<Word> words = new ArrayList<>();
 	
@@ -36,9 +37,32 @@ public class Document implements Comparable<Document> {
 		this.title = title;
 		this.content = content;
 		this.url = url;
-
+		this.semanticIndex = true;
 		loadWordsFromData();
 	}
+	
+	
+	/**
+	 * This method load word list from data.
+	 */
+	public void loadSematicWordsFromData() {
+		if (content == null || content == "") {
+			System.out.println("NO DATA TO LOAD.....");
+		} else {
+			VietnameseMaxentTagger vietnameseMaxentTagger = new VietnameseMaxentTagger();
+			List<WordTag> wordTags = vietnameseMaxentTagger.tagText2(content);
+			for (WordTag wordTag : wordTags) {
+				
+				Word word = new Word(null, wordTag.value().trim(), wordTag.tag(), id, 1D);
+				addWordIntoWords(word);
+			}
+		}
+	}
+	
+	
+	
+	
+	
 	
 	/**
 	 * This method load word list from data.
@@ -50,6 +74,7 @@ public class Document implements Comparable<Document> {
 			VietnameseMaxentTagger vietnameseMaxentTagger = new VietnameseMaxentTagger();
 			List<WordTag> wordTags = vietnameseMaxentTagger.tagText2(content);
 			for (WordTag wordTag : wordTags) {
+				
 				Word word = new Word(null, wordTag.value().trim(), wordTag.tag(), id, 1D);
 				addWordIntoWords(word);
 			}
@@ -68,6 +93,12 @@ public class Document implements Comparable<Document> {
 			words.add(word);
 		}
 	}
+	
+	
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "lengwithquery: " + getCosinWithQuery() + "-----Url: " + url + "\n";
@@ -179,6 +210,32 @@ public class Document implements Comparable<Document> {
 	 */
 	public void setDocumentLeng(Double documentLeng) {
 		this.documentLeng = documentLeng;
+	}
+
+
+
+
+
+
+
+	/**
+	 * @return the semanticIndex
+	 */
+	public boolean isSemanticIndex() {
+		return semanticIndex;
+	}
+
+
+
+
+
+
+
+	/**
+	 * @param semanticIndex the semanticIndex to set
+	 */
+	public void setSemanticIndex(boolean semanticIndex) {
+		this.semanticIndex = semanticIndex;
 	}
 	
 }
