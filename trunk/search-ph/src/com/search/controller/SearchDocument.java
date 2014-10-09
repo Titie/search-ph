@@ -41,9 +41,9 @@ public class SearchDocument {
 		System.out.println("TIME TO PROCESS DATA = " + (System.currentTimeMillis() - currentTime2));
 //		
 		String query 					= "Toshiba giới thiệu máy Satellite";
-		List<Document> retrieval 		= new ArrayList<Document>();
-		retrieval 						= searchDocument.searchDocument(query, tfidf);
-		System.out.println("search result: \n" + retrieval);
+		List<Document> retrievals 		= new ArrayList<Document>();
+		retrievals 						= searchDocument.searchDocument(query, tfidf);
+		System.out.println("search result: \n" + retrievals);
 		System.out.println(tfidf.getWords());
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
 		boolean isContinue = true;
@@ -58,8 +58,12 @@ public class SearchDocument {
 			} else {
 				System.out.println("Query inputed:" + query);
 				System.out.println("Search .................");
-				retrieval 		= searchDocument.searchDocument(query, tfidf);
-				System.out.println("search result: \n" + retrieval.subList(0, 10));
+				retrievals 		= searchDocument.searchDocument(query, tfidf);
+				if (retrievals.size() > 10) {
+					System.out.println("search result: \n" + retrievals.subList(0, 10));
+				} else {
+					System.out.println("search result: \n" + retrievals);
+				}
 			}
 		}
 	}

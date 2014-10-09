@@ -119,7 +119,7 @@ public class Document implements Comparable<Document> {
 	
 	@Override
 	public String toString() {
-		return "lengwithquery: " + getCosinWithQuery() + "-----Url: " + url + "\n";
+		return "consin D-Q: " + getCosinWithQuery() + "-----Url: " + url + "\n";
 	}
 	
 	/* ********************* SETTER AND GETTER **************************** */
@@ -217,6 +217,7 @@ public class Document implements Comparable<Document> {
 	 * @return the documentLeng
 	 */
 	public Double getDocumentLeng() {
+		documentLeng = 0D;
 		for (Word word : words) {
 			documentLeng += word.getTfidf()*word.getTfidf();
 		}

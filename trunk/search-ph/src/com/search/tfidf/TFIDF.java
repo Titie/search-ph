@@ -73,7 +73,7 @@ public class TFIDF {
 			Collections.sort(document.getWords());
 			
 			if (document.getWords().size() > 10) {
-				System.out.println("url: " + document.getUrl() + "---" + document.getWords().subList(0, 10));
+				//System.out.println("url: " + document.getUrl() + "---" + document.getWords().subList(0, 10));
 			}
 		}
 		//System.out.println("word in the all document: " + words);
@@ -92,9 +92,10 @@ public class TFIDF {
 	
 	
 	public List<Document> proccessCalculateVectorSpaceModel() {
+		List<Document> documentRetrievals = new ArrayList<Document>();
 		processQuery();
 		List<Word> queryWords = query.getWords();
-		if (queryWords == null || queryWords.size() == 0) return documents;
+		if (queryWords == null || queryWords.size() == 0) return documentRetrievals;
 		
 		Collections.sort(queryWords);
 		double maximumFrequency = queryWords.get(0).getTf();
@@ -126,9 +127,12 @@ public class TFIDF {
 				}
 			}
 			document.setCosinWithQuery(cosinQD/(document.getDocumentLeng()*query.getDocumentLeng()));
+			if (document.getCosinWithQuery() > 0) {
+				documentRetrievals.add(document);
+			}
 		}
 		
-		return documents;
+		return documentRetrievals;
 	}
 	/**
 	 * This method add word into word list.
