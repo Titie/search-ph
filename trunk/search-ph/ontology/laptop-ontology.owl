@@ -460,10 +460,26 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Inspiron -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Inspiron">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Inspiron"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#LENOVO -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#LENOVO">
         <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Hãng_Sản_Xuât"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Latitude -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Latitude">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Latitude"/>
     </owl:NamedIndividual>
     
 
@@ -496,6 +512,22 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Mint">
         <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Linux"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Pavilion -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Pavilion">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Pavilion"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Probook -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Probook">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Probook"/>
     </owl:NamedIndividual>
     
 
@@ -536,6 +568,14 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Ubuntu">
         <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Linux"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Vostro -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Vostro">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#VOSTRO"/>
     </owl:NamedIndividual>
     
 
