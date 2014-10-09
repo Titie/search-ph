@@ -38,7 +38,7 @@ public class OntologyManager {
 	
 	//define computer ontology
 	//private static final String COMPUTER_ONTOLOGY_FILE = "D:\\Java\\workspace\\search-ph\\ontology\\computer-ontology.owl";
-	private static final String COMPUTER_ONTOLOGY_FILE = "\\ontology\\computer-ontology.owl";
+	private static final String COMPUTER_ONTOLOGY_FILE = "\\ontology\\laptop-ontology.owl";
 	
 	//define object properties.
 	private static final String IS_INDIVIDUAL_OF = "http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#is_individual_of";
@@ -96,8 +96,56 @@ public class OntologyManager {
 	 */
 	public static void testOWLAPI() throws OWLException {
 		//System.out.println(getAllIndividualsName());
-		
+		getSemanticEntriesForTerm("linux");
 	}
+	
+	
+	/**
+	 * This method is used to get semantic entry for term.
+	 * @param term
+	 * @return
+	 * @throws OWLException 
+	 */
+	public static List<String> getSemanticEntriesForTerm(String term) {
+		List<String> semanticEntrys = new ArrayList<String>();
+		
+		OWLNamedIndividual individual;
+		try {
+			individual = getIRIOfIndividual(term);
+		} catch(Exception e) {
+			individual = null;
+		}
+		
+		if (individual != null) {
+			//add individual
+			semanticEntrys.add(individual.getIRI().toString());
+			
+			try {
+				Set<OWLNamedIndividual> individuals = getIRIOfIndividualByObjectProperties(term);
+				for (OWLNamedIndividual ind : individuals) {
+					//add all individual by properties
+					semanticEntrys.add(ind.getIRI().toString());
+				}
+			} catch(Exception e) {}
+			
+			//add class of individual
+			try {
+				OWLClass owlClass = getOWLClassByIndividua(term);
+				semanticEntrys.add(owlClass.getIRI().toString());
+			} catch(Exception e) {}
+		}
+		
+		//add class has same name.
+		try {
+			OWLClass owlClass = getOWLClassByOWLClassName(term);
+			if (owlClass != null) {
+				semanticEntrys.add(owlClass.getIRI().toString());
+			}
+		} catch(Exception e) {}
+		
+		return semanticEntrys;
+	}
+	
 	
 	/**
 	 * This method is used to get {@link Set} {@link OWLIndividual} has relation with individual.
@@ -221,6 +269,26 @@ public class OntologyManager {
 			for (OWLNamedIndividual owlNamedIndividual : owlNamedIndividuals) {
 				if (owlNamedIndividual.getIRI().getFragment().trim().equalsIgnoreCase(individual)) return owlClass;
 			}
+		}
+		return null;
+	}
+	
+	/**
+	 * This method will get {@link OWLClass} by individual.
+	 * @param individual
+	 * @return
+	 * @throws OWLException
+	 */
+	public static OWLClass getOWLClassByOWLClassName(String className) throws OWLException {
+		if (className == null || className == "") return null;
+		
+		//format value of individual
+		className = className.trim().replace(" ", "_").toUpperCase();
+		
+		Set<OWLClass> owlClasses 					= ont.getClassesInSignature();
+		
+		for (OWLClass owlClass : owlClasses) {
+			if (owlClass.getIRI().toURI().getFragment().trim().equalsIgnoreCase(className)) return owlClass;
 		}
 		return null;
 	}

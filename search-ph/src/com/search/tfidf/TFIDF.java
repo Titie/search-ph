@@ -9,31 +9,20 @@ import com.search.model.Word;
 import com.search.utils.Constants;
 import com.search.utils.Utils;
 
+/**
+ * This class is used to calculate TF-IDF for words and search document.
+ * @author AnhH1
+ *
+ */
 public class TFIDF {
-	
-	public static void main(String[] args) {
-		
-		long currentTime1 				= System.currentTimeMillis();
-		List<Document> documents 		= Utils.loadDataFromDB();
-		System.out.println("TIME LOAD DATA = " + (System.currentTimeMillis() - currentTime1));
-		
-		long currentTime2 				= System.currentTimeMillis();
-		
-		//TFIDF tfidf 					= new TFIDF(documents);
-		
-		//tfidf.processDocumentsAndCalculateTFIDF();
-		
-		//Utils.saveWordInToDataBase(tfidf.getDocuments());
-		//Utils.saveTFIDFWordInToDataBase(tfidf.getWords());
-		
-		System.out.println("TIME TO PROCESS DATA = " + (System.currentTimeMillis() - currentTime2));
-	}
-	
-	
 	private List<Document> 	documents;
-	private List<Word> stopwords 		= Utils.readWordInFile(Constants.STOP_WORDS);
+	
+	//only use when semantic search = true.
+	private List<Word> 		stopwords 		= Utils.readWordInFile(Constants.STOP_WORDS);
+	
+	
 	private List<Word> 		words		= new ArrayList<Word>();
-	private Document query;
+	private Document 		query;
 	
 	
 	
@@ -54,8 +43,10 @@ public class TFIDF {
 	public void processDocumentsAndCalculateTFIDF() {
 		
 		//remove stop words
-		for (Document document : documents) {
-			document.getWords().removeAll(stopwords);
+		if (!Constants.SEMANTICSEARCH) {
+			for (Document document : documents) {
+				document.getWords().removeAll(stopwords);
+			}
 		}
 		//end remove stop words
 		
@@ -103,6 +94,8 @@ public class TFIDF {
 	public List<Document> proccessCalculateVectorSpaceModel() {
 		processQuery();
 		List<Word> queryWords = query.getWords();
+		if (queryWords == null || queryWords.size() == 0) return documents;
+		
 		Collections.sort(queryWords);
 		double maximumFrequency = queryWords.get(0).getTf();
 		

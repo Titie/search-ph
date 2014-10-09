@@ -8,4 +8,5 @@ public class Constants {
 	public static final String USER 				= ConfigurationUtils.getInstance().get("db.username");
 	public static final String PASS 				= ConfigurationUtils.getInstance().get("db.password");
 	public static final Integer TOTAL_DOCUMENT		= Integer.parseInt(ConfigurationUtils.getInstance().get("search.totaldocument"));
+	public static final Boolean SEMANTICSEARCH 		= Boolean.valueOf(ConfigurationUtils.getInstance().get("search.sematicsearch"));
 }
