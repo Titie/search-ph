@@ -3,6 +3,11 @@ package com.search.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.semanticweb.owlapi.model.OWLException;
+
+import com.search.ontology.OntologyManager;
+import com.search.utils.Constants;
+
 import vn.hus.nlp.tagger.VietnameseMaxentTagger;
 import edu.stanford.nlp.ling.WordTag;
 
@@ -20,8 +25,7 @@ public class Document implements Comparable<Document> {
 	private String 	url;
 	private Double 	cosinWithQuery = 0D;
 	private Double documentLeng = 0D;
-	private boolean semanticIndex;
-	
+
 	
 	private List<Word> words = new ArrayList<>();
 	
@@ -37,13 +41,13 @@ public class Document implements Comparable<Document> {
 		this.title = title;
 		this.content = content;
 		this.url = url;
-		this.semanticIndex = true;
 		loadWordsFromData();
 	}
 	
 	
 	/**
 	 * This method load word list from data.
+	 * @throws  
 	 */
 	public void loadSematicWordsFromData() {
 		if (content == null || content == "") {
@@ -52,9 +56,16 @@ public class Document implements Comparable<Document> {
 			VietnameseMaxentTagger vietnameseMaxentTagger = new VietnameseMaxentTagger();
 			List<WordTag> wordTags = vietnameseMaxentTagger.tagText2(content);
 			for (WordTag wordTag : wordTags) {
-				
-				Word word = new Word(null, wordTag.value().trim(), wordTag.tag(), id, 1D);
-				addWordIntoWords(word);
+				if (Constants.SEMANTICSEARCH) {
+					List<String> semanticEntries = OntologyManager.getSemanticEntriesForTerm(wordTag.value());
+					for (String semanticEntry : semanticEntries) {
+						Word word = new Word(null, semanticEntry, "SE", id, 1D);
+						addWordIntoWords(word);
+					}
+				} else {
+					Word word = new Word(null, wordTag.value().trim(), wordTag.tag(), id, 1D);
+					addWordIntoWords(word);
+				}
 			}
 		}
 	}
@@ -74,9 +85,16 @@ public class Document implements Comparable<Document> {
 			VietnameseMaxentTagger vietnameseMaxentTagger = new VietnameseMaxentTagger();
 			List<WordTag> wordTags = vietnameseMaxentTagger.tagText2(content);
 			for (WordTag wordTag : wordTags) {
-				
-				Word word = new Word(null, wordTag.value().trim(), wordTag.tag(), id, 1D);
-				addWordIntoWords(word);
+				if (Constants.SEMANTICSEARCH) {
+					List<String> semanticEntries = OntologyManager.getSemanticEntriesForTerm(wordTag.value());
+					for (String semanticEntry : semanticEntries) {
+						Word word = new Word(null, semanticEntry, "SE", id, 1D);
+						addWordIntoWords(word);
+					}
+				} else {
+					Word word = new Word(null, wordTag.value().trim(), wordTag.tag(), id, 1D);
+					addWordIntoWords(word);
+				}
 			}
 		}
 	}
@@ -210,32 +228,6 @@ public class Document implements Comparable<Document> {
 	 */
 	public void setDocumentLeng(Double documentLeng) {
 		this.documentLeng = documentLeng;
-	}
-
-
-
-
-
-
-
-	/**
-	 * @return the semanticIndex
-	 */
-	public boolean isSemanticIndex() {
-		return semanticIndex;
-	}
-
-
-
-
-
-
-
-	/**
-	 * @param semanticIndex the semanticIndex to set
-	 */
-	public void setSemanticIndex(boolean semanticIndex) {
-		this.semanticIndex = semanticIndex;
 	}
 	
 }

@@ -19,38 +19,7 @@ import com.search.utils.Utils;
  */
 public class SearchDocument {
 	private List<Document> documents = new ArrayList<Document>();
-	
-//	public static void main(String[] args) {
-//		System.out.println("Use CTRL+C to quite to program.");
-//
-//		// Create the reader for reading in the text typed in the console. 
-//		InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-//		BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//
-//		try {
-//		  String line = null;
-//		  while ((line = bufferedReader.readLine()).length() > 0) {
-//		    for (int index = 0; index < line.length(); index++) {
-//
-//		      // Convert the integer to a hexadecimal code.
-//		      String hexCode = Integer.toHexString(line.codePointAt(index)).toUpperCase();
-//
-//
-//		      // but the it must be a four number value.
-//		      String hexCodeWithAllLeadingZeros = "0000" + hexCode;
-//		      String hexCodeWithLeadingZeros = hexCodeWithAllLeadingZeros.substring(hexCodeWithAllLeadingZeros.length()-4);
-//
-//		      System.out.println("\\u" + hexCodeWithLeadingZeros);
-//		      PrintStream out = new PrintStream(System.out, true, "UTF-8");
-//			    out.println(hexCodeWithLeadingZeros);
-//		    }
-//		    
-//		  }
-//		 
-//		} catch (IOException ioException) {
-//		       ioException.printStackTrace();
-//		  }
-//		 }
+
 	public static void main(String[] args) throws IOException {
 		long currentTime1 				= System.currentTimeMillis();
 		List<Document> documents 		= Utils.loadDataFromDB();
@@ -66,8 +35,8 @@ public class SearchDocument {
 		TFIDF tfidf 					= new TFIDF(documents);
 		tfidf.processDocumentsAndCalculateTFIDF();
 		
-		Utils.saveWordInToDataBase(tfidf.getDocuments());
-		Utils.saveTFIDFWordInToDataBase(tfidf.getWords());
+//		Utils.saveWordInToDataBase(tfidf.getDocuments());
+//		Utils.saveTFIDFWordInToDataBase(tfidf.getWords());
 		
 		System.out.println("TIME TO PROCESS DATA = " + (System.currentTimeMillis() - currentTime2));
 //		

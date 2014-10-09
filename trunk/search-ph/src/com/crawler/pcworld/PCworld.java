@@ -33,30 +33,36 @@ public class PCworld {
     public static Map<String, String> urlContents 	= new HashMap<String, String>();
     public static Set<String> urls 		= new HashSet<String>();
     public static String baseURL 		= "http://www.pcworld.com.vn/articles/san-pham/may-xach-tay";//"http://www.pcworld.com.vn/articles/san-pham/the-gioi-may-tinh/";
-	public static void main(String[] args) {
-		checkProxy();
-		System.out.println(" -------------------- GET DATAT FROM PCWORLD ----------- ");
-//		String rootURL = "http://www.pcworld.com.vn/articles/san-pham/may-xach-tay/?Date=";
-//		genrateUrlBaseOnDate(rootURL);
-//		List<String> urlList = new ArrayList<String>(urls);
-//		System.out.println("HAS SIZE = " + urlList.size());
-		//for (String url : urlList) {
-			//System.out.println("CALL " + url + " --> INSERT DATA");
-			//getDataContentFromUrl(url);
-//		writeDataInFile("D:\\urls_mtxt.txt", urlList);
-		//}
-		try {
-			File f = new File("D:\\urls_mtxt.txt");
-			BufferedReader reader = new BufferedReader(new FileReader(f));
-			String line;
-			while((line = reader.readLine()) != null) {
-				System.out.println("CALL " + line + " --> INSERT DATA");
-				getDataContentFromUrl(line);
-			}
-			reader.close();
-		} catch (IOException e) {}
-	}
+//	public static void main(String[] args) {
+//		checkProxy();
+//		System.out.println(" -------------------- GET DATAT FROM PCWORLD ----------- ");
+////		String rootURL = "http://www.pcworld.com.vn/articles/san-pham/may-xach-tay/?Date=";
+////		genrateUrlBaseOnDate(rootURL);
+////		List<String> urlList = new ArrayList<String>(urls);
+////		System.out.println("HAS SIZE = " + urlList.size());
+//		//for (String url : urlList) {
+//			//System.out.println("CALL " + url + " --> INSERT DATA");
+//			//getDataContentFromUrl(url);
+////		writeDataInFile("D:\\urls_mtxt.txt", urlList);
+//		//}
+//		try {
+//			File f = new File("D:\\urls_mtxt.txt");
+//			BufferedReader reader = new BufferedReader(new FileReader(f));
+//			String line;
+//			while((line = reader.readLine()) != null) {
+//				System.out.println("CALL " + line + " --> INSERT DATA");
+//				getDataContentFromUrl(line);
+//			}
+//			reader.close();
+//		} catch (IOException e) {}
+//	}
 	
+    public static void main(String[] args) {
+    	HTMLParser parser 	= new HTMLParser();
+		parser.loadURL("https://www.google.com.vn/");
+		String data 		= parser.getHtml();
+		System.out.println("data --->" + data);
+	}
 	
 	/**
 	 * This method is used to get all url form root URL.

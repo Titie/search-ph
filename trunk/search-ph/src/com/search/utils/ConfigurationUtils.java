@@ -14,7 +14,7 @@ public class ConfigurationUtils {
     public static final String CONFIG_FILE				= "/application.properties";
     public static ConfigurationUtils instance 			= new ConfigurationUtils();
     public static Properties PROPERTIES = null;
-
+    
     /**
      * Get configuration of this application.
      *
