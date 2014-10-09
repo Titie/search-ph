@@ -1,6 +1,8 @@
 package com.search.controller;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -69,28 +71,28 @@ public class SearchDocument {
 		
 		System.out.println("TIME TO PROCESS DATA = " + (System.currentTimeMillis() - currentTime2));
 //		
-//		String query 					= "Toshiba giới thiệu máy Satellite";
-//		List<Document> retrieval 		= new ArrayList<Document>();
-//		retrieval 						= searchDocument.searchDocument(query, tfidf);
-//		System.out.println("search result: \n" + retrieval);
-//		System.out.println(tfidf.getWords());
-//		BufferedReader in = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
-//		boolean isContinue = true;
-//		while (isContinue) {
-//			System.out.println("WRITE YOUR QUERY.....");
-//			query = in.readLine();
-//			byte[] unicodeBytes = query.getBytes("UTF-8");
-//			System.out.println(new String(unicodeBytes, "UTF-8"));
-//			if (query.equalsIgnoreCase("exit")) {
-//				System.out.println("System exit ----- ");
-//				isContinue = false;
-//			} else {
-//				System.out.println("Query inputed:" + query);
-//				System.out.println("Search .................");
-//				retrieval 		= searchDocument.searchDocument(query, tfidf);
-//				System.out.println("search result: \n" + retrieval.subList(0, 10));
-//			}
-//		}
+		String query 					= "Toshiba giới thiệu máy Satellite";
+		List<Document> retrieval 		= new ArrayList<Document>();
+		retrieval 						= searchDocument.searchDocument(query, tfidf);
+		System.out.println("search result: \n" + retrieval);
+		System.out.println(tfidf.getWords());
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
+		boolean isContinue = true;
+		while (isContinue) {
+			System.out.println("WRITE YOUR QUERY.....");
+			query = in.readLine();
+			byte[] unicodeBytes = query.getBytes("UTF-8");
+			System.out.println(new String(unicodeBytes, "UTF-8"));
+			if (query.equalsIgnoreCase("exit")) {
+				System.out.println("System exit ----- ");
+				isContinue = false;
+			} else {
+				System.out.println("Query inputed:" + query);
+				System.out.println("Search .................");
+				retrieval 		= searchDocument.searchDocument(query, tfidf);
+				System.out.println("search result: \n" + retrieval.subList(0, 10));
+			}
+		}
 	}
 
 	

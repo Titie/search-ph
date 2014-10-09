@@ -38,7 +38,7 @@ public class OntologyManager {
 	
 	//define computer ontology
 	//private static final String COMPUTER_ONTOLOGY_FILE = "D:\\Java\\workspace\\search-ph\\ontology\\computer-ontology.owl";
-	private static final String COMPUTER_ONTOLOGY_FILE = "D:\\Java\\part\\VNM\\workspace-172.21.1.145\\search-ph\\ontology\\computer-ontology.owl";
+	private static final String COMPUTER_ONTOLOGY_FILE = "\\ontology\\computer-ontology.owl";
 	
 	//define object properties.
 	private static final String IS_INDIVIDUAL_OF = "http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#is_individual_of";
@@ -60,7 +60,7 @@ public class OntologyManager {
 		OBJECT_PROPERTIES_LIST.add(IS_PART_OF);
 		OBJECT_PROPERTIES_LIST.add(IS_PRODUCT_OF);
 		manager 					= OWLManager.createOWLOntologyManager();
-		File file 					= new File(COMPUTER_ONTOLOGY_FILE);
+		File file 					= new File(System.getProperty("user.dir") + COMPUTER_ONTOLOGY_FILE);
 		fac 						= manager.getOWLDataFactory();
 		try {
 			ont 					= manager.loadOntologyFromOntologyDocument(file);
@@ -76,6 +76,7 @@ public class OntologyManager {
 	}
 	
 	
+	
 	/**
 	 * This function to test methods.
 	 * @param args
@@ -84,6 +85,7 @@ public class OntologyManager {
 	public static void main(String[] args) throws OWLException {
 		System.out.println("TEST READ ONTOLOGY");
 		testOWLAPI();
+		//System.out.println(System.getProperty("user.dir"));
 		System.out.println("END TEST: ");
 	}
 	
@@ -93,7 +95,8 @@ public class OntologyManager {
 	 * @throws OWLException
 	 */
 	public static void testOWLAPI() throws OWLException {
-		System.out.println(getAllIndividualsName());
+		//System.out.println(getAllIndividualsName());
+		
 	}
 	
 	/**
