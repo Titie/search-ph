@@ -96,7 +96,7 @@ public class OntologyManager {
 	 */
 	public static void testOWLAPI() throws OWLException {
 		//System.out.println(getAllIndividualsName());
-		getSemanticEntriesForTerm("linux");
+		System.out.println(getSemanticEntriesForTerm("pavilion"));
 	}
 	
 	
