@@ -83,6 +83,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Apple -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Apple">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Chương_Trình_Diệt_Virut -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Chương_Trình_Diệt_Virut">
@@ -121,14 +129,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Inspiron -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Inspiron">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#DELL"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Intel -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Intel">
@@ -145,26 +145,10 @@
     
 
 
-    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Latitude -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Latitude">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#DELL"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Linux -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Linux">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Hệ_Điều_Hành"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#MSI -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#MSI">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
     </owl:Class>
     
 
@@ -199,14 +183,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Pavilion -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Pavilion">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#HP"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Phần_Cứng -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Phần_Cứng"/>
@@ -216,14 +192,6 @@
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Phần_Mềm -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Phần_Mềm"/>
-    
-
-
-    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Probook -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Probook">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#HP"/>
-    </owl:Class>
     
 
 
@@ -247,14 +215,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#TOSHIBA">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#VOSTRO -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#VOSTRO">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#DELL"/>
     </owl:Class>
     
 
@@ -343,12 +303,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ANDROID -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ANDROID"/>
-    
-
-
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#APPLE -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#APPLE">
@@ -360,7 +314,16 @@
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ASUS -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ASUS">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ASUS"/>
         <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Hãng_Sản_Xuât"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Aspire -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Aspire">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ACER"/>
     </owl:NamedIndividual>
     
 
@@ -454,16 +417,10 @@
     
 
 
-    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#IPHONE3 -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#IPHONE3"/>
-    
-
-
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Inspiron -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Inspiron">
-        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Inspiron"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#DELL"/>
     </owl:NamedIndividual>
     
 
@@ -479,7 +436,7 @@
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Latitude -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Latitude">
-        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Latitude"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#DELL"/>
     </owl:NamedIndividual>
     
 
@@ -508,6 +465,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Macbook -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Macbook">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Apple"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Mint -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Mint">
@@ -516,10 +481,16 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#N -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#N"/>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Pavilion -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Pavilion">
-        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Pavilion"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#HP"/>
     </owl:NamedIndividual>
     
 
@@ -527,7 +498,7 @@
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Probook -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Probook">
-        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Probook"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#HP"/>
     </owl:NamedIndividual>
     
 
@@ -564,6 +535,22 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Satellite -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Satellite">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#TOSHIBA"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Stream -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Stream">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#HP"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Ubuntu -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Ubuntu">
@@ -575,7 +562,7 @@
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Vostro -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Vostro">
-        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#VOSTRO"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#DELL"/>
     </owl:NamedIndividual>
     
 
@@ -651,10 +638,42 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Y50 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Y50">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#LENOVO"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Z50 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Z50">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#LENOVO"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ZOTAC -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ZOTAC">
         <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Hãng_Sản_Xuât"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ideapad -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#ideapad">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#LENOVO"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#thinkpad -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#thinkpad">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#LENOVO"/>
     </owl:NamedIndividual>
 </rdf:RDF>
 
