@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="semanticsearch">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/ontology"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/conf"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
+        <property name="java-output-path" value="/semanticsearch/build/classes"/>
+        <property name="context-root" value="semanticsearch"/>
+    </wb-module>
+</project-modules>
