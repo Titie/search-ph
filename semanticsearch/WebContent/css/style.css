@@ -1,0 +1,166 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	font-family: Arial;
+	height: 100%;
+	background: url('images/bg_dulich.jpg') repeat-y scroll center top #F2F2F2;
+	
+}
+.container{
+width: 550px;
+margin: 10px auto 0;
+position: relative;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a {
+	text-decoration: none;
+}
+.formSearch{
+	width : 100%;
+	float:left;
+}
+.logo {
+	float: left;
+	margin-left : 200px;
+}
+.formSearch input {
+	height : 30px;
+	width : 550px;
+}
+.formSearch button {
+	height : 30px;
+}
+.content {
+	width : 100%;
+	float:left;
+	margin-top : 20px;
+}
+.resultStats {
+	margin-bottom : 10px;
+}
+.content h2 {
+	font-size : 20px;
+	color : #1a0dab;
+	margin-bottom : 5px;
+}
+.listStats {
+	margin-top : 10px;
+	width: 550px;
+	margin-bottom : 20px;
+}
+.listStats li {
+	margin-top : 30px;
+}
+h1{
+font-weight: bold;
+color: #067594;
+font-size: 30px;
+margin-top: 10px;
+line-height: 1.3;
+float: left;
+width : 100%;
+}
+
+.detail-content{
+	float:left;
+	margin-top: 10px;
+	width : 550px;	
+	line-height: 16px;
+	margin-bottom: 40px;
+}
+ul{border:0; margin:0; padding:0;}
+
+#pagination-flickr li{
+border:0; margin:0; padding:0;
+font-size:15px;
+list-style:none;
+}
+
+#pagination-flickr a{
+border:solid 1px #DDDDDD;
+margin-right:2px;
+}
+
+#pagination-flickr .previous-off,
+#pagination-flickr .next-off{
+color:#666666;
+display:block;
+float:left;
+font-weight:bold;
+padding:0px;
+}
+#pagination-flickr {
+	float: left;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+#pagination-flickr .next a,
+#pagination-flickr .previous a{
+font-weight:bold;
+border:solid 1px #FFFFFF;
+}
+
+#pagination-flickr .active{
+color:#ff0084;
+font-weight:bold;
+display:block;
+float:left;
+padding:4px 6px;
+}
+
+#pagination-flickr a:link,
+#pagination-flickr a:visited{
+color:#0063e3;
+display:block;
+float:left;
+padding:3px 6px;
+text-decoration:none;
+}
+
+#pagination-flickr a:hover{
+border:solid 1px #666666;
+}
+.tempo{
+	font-size: 13px;
+	float: left;
+	width: 100%;
+}
