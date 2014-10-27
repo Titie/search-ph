@@ -2,3 +2,6 @@
 Memcached: http://zurmo.org/wiki/installing-memcache-on-windows
 
 http://www.codeforest.net/how-to-install-memcached-on-windows-machine
+
+Tomcat configuration UTF-8
+edit file server.xml: <Connector URIEncoding="UTF-8" connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
