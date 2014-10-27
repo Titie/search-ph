@@ -3,7 +3,7 @@ package com.search.utils;
 
 public class Constants {
 	
-	public static final String STOP_WORDS 			= "..\\resources\\stopword\\vn-stopwords.data";
+	public static final String STOP_WORDS 			= "\\resources\\stopword\\vn-stopwords.data";
 	
 	public static final String JDBC_DRIVER 			= ConfigurationUtils.get("db.driver");
 	public static final String DB_URL 				= ConfigurationUtils.get("db.url");
