@@ -24,8 +24,8 @@ import com.search.utils.Utils;
 public class CachedService {
 	
 	public static void main(String[] args) {
-		//saveDocumentIntoMemcached();
 		loadDictionary();
+		saveDocumentIntoMemcached();
 	}
 	
 	public static List<Document> getDocumentListFromMemCached() {
@@ -61,7 +61,7 @@ public class CachedService {
 			NodeList nodeList = rootNode.getChildNodes();
 			for (int i = 0; i< nodeList.getLength(); i++) {
 				if(nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
-					String abbreviation = ((Element) nodeList.item(i)).getAttribute("abbreviation");
+					String abbreviation = ((Element) nodeList.item(i)).getAttribute("word");
 					String value 		= nodeList.item(i).getTextContent();
 					dictionary.put(abbreviation, value);
 				}
