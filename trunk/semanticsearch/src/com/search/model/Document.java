@@ -6,6 +6,7 @@ import java.util.List;
 
 import vn.hus.nlp.tagger.VietnameseMaxentTagger;
 
+import com.search.cached.CachedService;
 import com.search.ontology.OntologyManager;
 import com.search.utils.Constants;
 
@@ -57,16 +58,20 @@ public class Document implements Comparable<Document>, Serializable {
 		} else {
 			VietnameseMaxentTagger vietnameseMaxentTagger = new VietnameseMaxentTagger();
 			List<WordTag> wordTags = vietnameseMaxentTagger.tagText2(content);
+			if ("Query".equalsIgnoreCase(title)) {
+				System.out.println("word in query ===>" + wordTags);
+			}
 			for (WordTag wordTag : wordTags) {
+				String wordTagValue = CachedService.getDictionary().get(wordTag.value().toUpperCase()) == null ? wordTag.value() : CachedService.getDictionary().get(wordTag.value().toUpperCase());
 				//System.out.println("WORD: " + wordTag.value());
 				if (Constants.SEMANTICSEARCH) {
-					List<String> semanticEntries = OntologyManager.getSemanticEntriesForTerm(wordTag.value());
+					List<String> semanticEntries = OntologyManager.getSemanticEntriesForTerm(wordTagValue);
 					for (String semanticEntry : semanticEntries) {
 						Word word = new Word(null, semanticEntry, "SE", id, 1D);
 						addWordIntoWords(word);
 					}
 				} else {
-					Word word = new Word(null, wordTag.value().trim(), wordTag.tag(), id, 1D);
+					Word word = new Word(null, wordTagValue.trim(), wordTag.tag(), id, 1D);
 					addWordIntoWords(word);
 				}
 			}
