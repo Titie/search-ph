@@ -180,7 +180,7 @@
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_Tính_Xách_Tay">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_tính"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_tính_cá_nhân"/>
     </owl:Class>
     
 
@@ -191,10 +191,18 @@
     
 
 
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_tính_cá_nhân -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_tính_cá_nhân">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_tính"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_tính_để_bàn -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_tính_để_bàn">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_tính"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Máy_tính_cá_nhân"/>
     </owl:Class>
     
 
@@ -940,6 +948,14 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Z50">
         <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#LENOVO"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Z830 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#Z830">
+        <rdf:type rdf:resource="http://www.semanticweb.org/anhh1/ontologies/2014/1/untitled-ontology-13#TOSHIBA"/>
     </owl:NamedIndividual>
     
 
