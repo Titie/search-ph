@@ -1,14 +1,9 @@
 package com.search.cached;
 
-import java.util.List;
-
 import com.danga.MemCached.MemCachedClient;
 import com.danga.MemCached.SockIOPool;
-import com.search.model.Document;
-import com.search.tfidf.TFIDF;
 import com.search.utils.ConfigurationUtils;
 import com.search.utils.Constants;
-import com.search.utils.Utils;
 
 /**
  * 
@@ -33,10 +28,7 @@ public class SemantichSearchCached {
 	
 
 	public static void main(String[] args) {
-		List<Document> documents 	= Utils.loadDataFromDB();
-		TFIDF tfidfCache 			= new TFIDF(documents);
-		tfidfCache.processDocumentsAndCalculateTFIDF();
-		SemantichSearchCached.getInstance().set("TFIDF", tfidfCache);
+		
 	}
 
 	

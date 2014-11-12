@@ -16,20 +16,12 @@ import com.search.utils.Utils;
  *
  */
 public class TFIDF implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5825154787788895670L;
-
+	private static final long serialVersionUID 	= 5825154787788895670L;
 	private List<Document> 	documents;
-	
-	//only use when semantic search = true.
-	private List<Word> 		stopwords 		= Utils.readWordInFile(Constants.STOP_WORDS);
-	
-	
-	private List<Word> 		words		= new ArrayList<Word>();
+	private List<Word> 		stopwords 			= Utils.readWordInFile(Constants.STOP_WORDS);
+	private List<Word> 		words				= new ArrayList<Word>();
 	private Document 		query;
-	
+	private boolean isSemanticSearch 			= false;
 	
 	
 	/**
@@ -37,7 +29,7 @@ public class TFIDF implements Serializable{
 	 * @param documents
 	 */
 	public TFIDF(List<Document> documents) {
-		this.documents = documents;
+		this.documents 			= documents;
 	}
 	
 
@@ -49,7 +41,7 @@ public class TFIDF implements Serializable{
 	public void processDocumentsAndCalculateTFIDF() {
 		
 		//remove stop words
-		if (!Constants.SEMANTICSEARCH) {
+		if (isSemanticSearch) {
 			for (Document document : documents) {
 				document.getWords().removeAll(stopwords);
 			}
@@ -134,7 +126,7 @@ public class TFIDF implements Serializable{
 			}
 			document.setCosinWithQuery(cosinQD/(document.getDocumentLeng()*query.getDocumentLeng()));
 			if (document.getCosinWithQuery() > 0) {
-				documentRetrievals.add(document);
+				documentRetrievals.add(document.clone());
 			}
 		}
 		
@@ -200,6 +192,22 @@ public class TFIDF implements Serializable{
 	 */
 	public void setWords(List<Word> words) {
 		this.words = words;
+	}
+
+
+	/**
+	 * @return the isSemanticSearch
+	 */
+	public boolean isSemanticSearch() {
+		return isSemanticSearch;
+	}
+
+
+	/**
+	 * @param isSemanticSearch the isSemanticSearch to set
+	 */
+	public void setSemanticSearch(boolean isSemanticSearch) {
+		this.isSemanticSearch = isSemanticSearch;
 	}
 	
 	
