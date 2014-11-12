@@ -22,7 +22,7 @@ $('#searchForm input:text').keypress(function (e) {
 <div class="container">
 <img src="${contextPath}/css/images/Search-History.jpg" alt="" width="130px" height="130px" class="logo"> 
 	<div class="formSearch">
-		<s:form id="searchForm" action="search"  method="GET" accept-charset="UTF-8">
+		<s:form id="searchForm" action="semanticSearch"  method="GET" accept-charset="UTF-8">
 			<table>
 				<tr>
 					<td >
@@ -58,19 +58,19 @@ $('#searchForm input:text').keypress(function (e) {
 		          <div style="text-align:center" class="more">
 		          <c:if test="${pageIndex >= 10}">
 		          	<li class="previous-off">
-		          		<a href="${contextPath}/search?q=${q}&isSubmit=true&pageIndex=1"> «Trước </a>
+		          		<a href="${contextPath}/semanticSearch?q=${q}&isSubmit=true&pageIndex=1"> «Trước </a>
 		          	</li>
 		          </c:if>
 					<c:forEach var="page" begin="${pageFirstLoop}" end="${pageEndLoop}">
 						<c:if test="${page ne pageIndex}">
-						 	<li><a href="${contextPath}/search?q=${q}&isSubmit=true&pageIndex=${page}">${page}</a></li>
+						 	<li><a href="${contextPath}/semanticSearch?q=${q}&isSubmit=true&pageIndex=${page}">${page}</a></li>
 						</c:if>
 						<c:if test="${page eq pageIndex}">
 							<li class="active">${page}</li>
 						</c:if>
 					</c:forEach>
 				   <c:if test="${(pageIndex + 4 )< pageNo}">
-		          	<li class="next"><a href="${contextPath}/search?q=${q}&isSubmit=true&pageIndex=${pageNo}">Sau »</a></li>
+		          	<li class="next"><a href="${contextPath}/semanticSearch?q=${q}&isSubmit=true&pageIndex=${pageNo}">Sau »</a></li>
 		          </c:if>
 				</div>
 		</c:if>
