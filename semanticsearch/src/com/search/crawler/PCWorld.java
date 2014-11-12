@@ -21,9 +21,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 
 import com.search.crawler.utils.HTMLParser;
+
+/**
+ * 
+ * @author AnhH1
+ *
+ */
 
 public class PCWorld {
     public static String proxyHost 		= "fsoft-proxy";
@@ -53,13 +59,13 @@ public class PCWorld {
 	 * @return
 	 */
 	public static void genrateUrlBaseOnDate(String rootURL) {
-		Set<String> urls = new HashSet<String>();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar calFrom 	= Calendar.getInstance();
 		Calendar calTo 		= Calendar.getInstance();
 		calFrom.set(2005, 1, 1);
 		calTo.set(2014, 8, 30);
 		for (Date date = calFrom.getTime(); date.compareTo(calTo.getTime()) < 0;date = calFrom.getTime()) {
+			@SuppressWarnings("deprecation")
 			String dateQuery = URLEncoder.encode(dateFormat.format(date));
 			String url = rootURL + dateQuery;
 			getURLsFromUrl(url);
@@ -98,11 +104,11 @@ public class PCWorld {
 		
 		parser.setHtml(data);
 		parser.filter("div", "class:title");
-		String title = StringEscapeUtils.unescapeHtml4 (parser.getNodeAt(0).getHtml().replaceAll("\\<.*?>",""));
+		String title = StringEscapeUtils.unescapeHtml (parser.getNodeAt(0).getHtml().replaceAll("\\<.*?>",""));
 		
 		parser.setHtml(data);
 		parser.filter("div", "id:ar-content-html");
-		String content = StringEscapeUtils.unescapeHtml4(parser.getNodeAt(0).getHtml().replaceAll("\\<.*?>",""));
+		String content = StringEscapeUtils.unescapeHtml(parser.getNodeAt(0).getHtml().replaceAll("\\<.*?>",""));
 		
 		insertDataIntoDB(title.replaceAll("'", ""), subUrl.replaceAll("'", ""), content.replaceAll("'", ""));
 	}
