@@ -11,9 +11,7 @@ import java.io.Serializable;
  */
 
 public class Word implements Comparable<Word>, Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -7397037455333668435L;
 	private Long 	wordId;
 	private String 	word;

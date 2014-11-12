@@ -14,6 +14,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.search.model.Document;
+import com.search.utils.Constants;
 import com.search.utils.Utils;
 
 /**
@@ -28,24 +29,46 @@ public class CachedService {
 		saveDocumentIntoMemcached();
 	}
 	
-	public static List<Document> getDocumentListFromMemCached() {
+	public static List<Document> getDocumentListFromMemCached(boolean isSematicSearch) {
 		System.out.println("===========GET DOCUMENT LIST FROM MEMCACHED=======");
 		List<Document> documents = new ArrayList<Document>();
-		int total = (int)SemantichSearchCached.getInstance().get("TOTALDOCUMENT");
-		for (int i = 0; i < total; i++) {
-			Document d = (Document)SemantichSearchCached.getInstance().get("doc:" + i);
-			documents.add(d);
+		if (isSematicSearch) {
+			int total = (int)SemantichSearchCached.getInstance().get(Constants.KEY_TOTAL_DOCUMENT_SM);
+			for (int i = 0; i < total; i++) {
+				Document d = (Document)SemantichSearchCached.getInstance().get(Constants.KEY_DOC_SM + i);
+				documents.add(d);
+			}
+		} else {
+			int total = (int)SemantichSearchCached.getInstance().get(Constants.KEY_TOTAL_DOCUMENT_NSM);
+			for (int i = 0; i < total; i++) {
+				Document d = (Document)SemantichSearchCached.getInstance().get(Constants.KEY_DOC_NSM + i);
+				documents.add(d);
+			}
 		}
+
 		return documents;
 	}
 	
 	public static void saveDocumentIntoMemcached() {
-		List<Document> documents 	= Utils.loadDataFromDB();
-		for (int i = 0; i < documents.size(); i++) {
-			System.out.println("SAVE DOCUMENT ID = " + i + " INTO THE MEMCACHED");
-			SemantichSearchCached.getInstance().set("doc:" + i, documents.get(i));
+		if (Constants.SEARCH_CONFIG.toLowerCase().contains("true")) {
+			List<Document> documents 	= Utils.loadDataFromDB(true);
+			for (int i = 0; i < documents.size(); i++) {
+				System.out.println("SAVE DOCUMENT ID = " + i + " INTO THE MEMCACHED");
+				SemantichSearchCached.getInstance().set(Constants.KEY_DOC_SM + i, documents.get(i));
+			}
+			SemantichSearchCached.getInstance().set(Constants.KEY_TOTAL_DOCUMENT_SM, documents.size());
 		}
-		SemantichSearchCached.getInstance().set("TOTALDOCUMENT", documents.size());
+		
+		if (Constants.SEARCH_CONFIG.toLowerCase().contains("false")) {
+			Constants.SEMANTICSEARCH 	= false;
+			List<Document> documents 	= Utils.loadDataFromDB(false);
+			for (int i = 0; i < documents.size(); i++) {
+				System.out.println("SAVE DOCUMENT ID = " + i + " INTO THE MEMCACHED");
+				SemantichSearchCached.getInstance().set(Constants.KEY_DOC_NSM + i, documents.get(i));
+			}
+			SemantichSearchCached.getInstance().set(Constants.KEY_TOTAL_DOCUMENT_NSM, documents.size());
+		}
+		
 	}
 	
 	public static void loadDictionary() {

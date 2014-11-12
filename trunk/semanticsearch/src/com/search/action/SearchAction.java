@@ -16,18 +16,19 @@ import com.search.utils.Utils;
  *
  */
 public class SearchAction extends BaseAction {
+	
 	private static final long serialVersionUID = 6775871449101932201L;
 	private String isSubmit;
 	private String q;
 	private List<Document> retrievals;
-	private int totalResult;
-	private double timeTaken;
-	private int documentId;
-	private Document document;
+	private int 		totalResult;
+	private double 		timeTaken;
+	private int 		documentId;
+	private Document 	document;
 	
 	
-	private int pageNo;
-	private int pageIndex;
+	private int 	pageNo;
+	private int 	pageIndex;
 	private Integer page;
 	private boolean isNext;
 	private boolean isBack;
@@ -38,33 +39,30 @@ public class SearchAction extends BaseAction {
 	public static final int DEFAULT_PAGE_SHOW = 10;
 	public static final int DEFAULT_NUMBER_PAGE_SHOW = 10;
 	
-	public String search() {
+	public String semanticSearch() {
 		String location = "search() - ";
 		SearchDocument 	searchDocument 	= new SearchDocument();
 		retrievals 						= new ArrayList<Document>();
-		TFIDF  	tfidf					= (TFIDF)getSession().getAttribute("TFIDF");
-		//tfidf = null;
-		//if (tfidf == null) {
+		
+		TFIDF  	tfidf					= (TFIDF)getSession().getAttribute("TFIDF_SM");
+		
+		if (tfidf == null) {
 			System.out.println("TFIDF ---- ADD IN SESSION");
-			tfidf = new TFIDF(CachedService.getDocumentListFromMemCached());
+			tfidf = new TFIDF(CachedService.getDocumentListFromMemCached(true));
 			tfidf.processDocumentsAndCalculateTFIDF();
-			getSession().setAttribute("TFIDF", tfidf);
-		//} else {
-		//	System.out.println("TFIDF ---- EXIST IN SESSION");
-		//}
-		//submit q search
+			getSession().setAttribute("TFIDF_SM", tfidf);
+		}
+		
 		if ("true".equalsIgnoreCase(isSubmit) && !StringUtils.isBlank(q)) {
 			long timeStart = System.currentTimeMillis();
-			//q = URLDecoder.decode(q, "UTF-8");
 			System.out.println("KEYWORDS: " + q);
-			retrievals = searchDocument.searchDocument(q, tfidf);
+			retrievals = searchDocument.searchDocument(q, tfidf, true);
 			totalResult = retrievals.size();
 			timeTaken = (System.currentTimeMillis() - timeStart)/1000;
 			System.out.println(location + "totalResult: " + totalResult);
 		}
 		
-		
-		//Start Phan trang
+		//Start pagination
 		pageNo = getPageNoDocument();
 		page = ((pageNo%DEFAULT_PAGE_SHOW != 0) ? (pageNo/DEFAULT_PAGE_SHOW):(pageNo/DEFAULT_PAGE_SHOW));
 		
@@ -96,11 +94,72 @@ public class SearchAction extends BaseAction {
 		endIndex = ( endIndex > retrievals.size() ? retrievals.size() : endIndex );
 		retrievals = retrievals.subList(startIndex, endIndex);
 
-		//END Phan trang
+		//END pagination
 		
 		return SUCCESS;
 	}
 
+	
+	public String normalSearch() {
+		String location = "search() - ";
+		SearchDocument 	searchDocument 	= new SearchDocument();
+		retrievals 						= new ArrayList<Document>();
+		
+		TFIDF  	tfidf					= (TFIDF)getSession().getAttribute("TFIDF_NSM");
+		
+		if (tfidf == null) {
+			System.out.println("TFIDF ---- ADD IN SESSION");
+			tfidf = new TFIDF(CachedService.getDocumentListFromMemCached(false));
+			tfidf.processDocumentsAndCalculateTFIDF();
+			getSession().setAttribute("TFIDF_NSM", tfidf);
+		}
+		
+		if ("true".equalsIgnoreCase(isSubmit) && !StringUtils.isBlank(q)) {
+			long timeStart = System.currentTimeMillis();
+			System.out.println("KEYWORDS: " + q);
+			retrievals = searchDocument.searchDocument(q, tfidf, false);
+			totalResult = retrievals.size();
+			timeTaken = (System.currentTimeMillis() - timeStart)/1000;
+			System.out.println(location + "totalResult: " + totalResult);
+		}
+		
+		//Start pagination
+		pageNo = getPageNoDocument();
+		page = ((pageNo%DEFAULT_PAGE_SHOW != 0) ? (pageNo/DEFAULT_PAGE_SHOW):(pageNo/DEFAULT_PAGE_SHOW));
+		
+		if ( pageIndex > pageNo) pageIndex = pageNo;
+		
+		if ( pageIndex < 1) pageIndex = 1;
+		
+		pageFirstLoop = 1;
+		if (pageNo <= DEFAULT_NUMBER_PAGE_SHOW) {
+			pageEndLoop = pageNo;
+		}
+
+		if (pageIndex < DEFAULT_NUMBER_PAGE_SHOW && pageNo > DEFAULT_NUMBER_PAGE_SHOW) {
+			pageFirstLoop = 1;
+			pageEndLoop = DEFAULT_NUMBER_PAGE_SHOW;
+		}
+		
+		if (pageIndex >= DEFAULT_NUMBER_PAGE_SHOW && pageNo > DEFAULT_NUMBER_PAGE_SHOW && pageIndex < pageNo) {
+			pageFirstLoop = pageIndex + 1 - DEFAULT_NUMBER_PAGE_SHOW/2;
+			pageEndLoop = pageIndex - 1 + DEFAULT_NUMBER_PAGE_SHOW/2;
+		}
+		
+		if (pageIndex >= DEFAULT_NUMBER_PAGE_SHOW && pageNo > DEFAULT_NUMBER_PAGE_SHOW && pageIndex + 4 > pageNo) {
+			pageFirstLoop = pageNo + 1 - DEFAULT_NUMBER_PAGE_SHOW;
+			pageEndLoop = pageNo;
+		}
+		int startIndex = DEFAULT_PAGE_SHOW * (pageIndex - 1);
+		int endIndex = startIndex + DEFAULT_PAGE_SHOW;
+		endIndex = ( endIndex > retrievals.size() ? retrievals.size() : endIndex );
+		retrievals = retrievals.subList(startIndex, endIndex);
+
+		//END pagination
+		
+		return SUCCESS;
+	}
+	
 	
 	public String details() {
 		document = Utils.getDocumentByDocumentId(documentId);
