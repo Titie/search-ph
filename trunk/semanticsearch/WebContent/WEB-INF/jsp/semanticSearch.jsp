@@ -20,7 +20,11 @@ $('#searchForm input:text').keypress(function (e) {
 </head>
 <body style="margin-top: 20px;margin-left: 10px;">
 <div class="container">
-<img src="${contextPath}/css/images/Search-History.jpg" alt="" width="130px" height="130px" class="logo"> 
+<img src="${contextPath}/css/images/Search-History.jpg" alt="" width="130px" height="130px" class="logo">
+<br/>
+<br/>
+<br/>
+Tìm kiếm ngữ nghĩa
 	<div class="formSearch">
 		<s:form id="searchForm" action="semanticSearch"  method="GET" accept-charset="UTF-8">
 			<table>
@@ -44,7 +48,7 @@ $('#searchForm input:text').keypress(function (e) {
 		<ul class="listStats">
 			<c:forEach items="${retrievals}" var="document">
 				<li>
-					<a href="${contextPath}/details?documentId=${document.id}" style="margin-bottom: 0px; margin-top: 10px;float:left;" target="_blank">
+					<a href="${contextPath}/semanticDetails?documentId=${document.id}" style="margin-bottom: 0px; margin-top: 10px;float:left;" target="_blank">
 						<h2>${document.title}</h2>
 					</a>
 					<span class="tempo">Cosin(Q,Ds) = ${document.cosinWithQuery}</span>
