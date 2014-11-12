@@ -11,8 +11,12 @@
 	<constant name="struts.custom.i18n.resources" value="global" />
 
 	<package name="user" namespace="/" extends="struts-default">
-		<action name="search" class="com.search.action.SearchAction" method="search">
-			<result name="success">/WEB-INF/jsp/search.jsp</result>
+		<action name="semanticSearch" class="com.search.action.SearchAction" method="semanticSearch">
+			<result name="success">/WEB-INF/jsp/semanticSearch.jsp</result>
+		</action>
+		
+		<action name="normalSearch" class="com.search.action.SearchAction" method="normalSearch">
+			<result name="success">/WEB-INF/jsp/normalSearch.jsp</result>
 		</action>
 		
 		<action name="details" class="com.search.action.SearchAction" method="details">
