@@ -131,7 +131,7 @@ public class Utils {
 	/**
 	 * This method is used to load data from database.
 	 */
-	public static List<Document> loadDataFromDB() {
+	public static List<Document> loadDataFromDB(boolean isSemanticSearch) {
 		List<Document> documents = new ArrayList<Document>();
 		Connection conn = null;
 		Statement stmt = null;
@@ -159,8 +159,14 @@ public class Utils {
 				String title 	= rs.getString("title");
 				String content 	= rs.getString("content");
 				try {
-					Document document = new Document(id, title, content, url);
-					documents.add(document);
+					if (isSemanticSearch) {
+						Document document = new Document(id, title, content, url, true);
+						documents.add(document);
+					} else {
+						Document document = new Document(id, title, content, url, false);
+						documents.add(document);
+					}
+					
 					System.out.println("LOADING DOCUMENT ID = " + id);
 				} catch(Exception e) {
 					System.out.println("DOCUMENT ID ERROR = " + id);

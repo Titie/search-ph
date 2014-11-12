@@ -10,7 +10,7 @@ public class Constants {
 	public static final String USER 				= ConfigurationUtils.get("db.username");
 	public static final String PASS 				= ConfigurationUtils.get("db.password");
 	public static final Integer TOTAL_DOCUMENT		= Integer.parseInt(ConfigurationUtils.get("search.totaldocument"));
-	public static final Boolean SEMANTICSEARCH 		= Boolean.valueOf(ConfigurationUtils.get("search.sematicsearch"));
+	public static final String SEARCH_CONFIG 		= ConfigurationUtils.get("search.sematicsearchconfig");
 	
 	// Constant for memcached;
 	public static String HOST 						= "HOST";
@@ -23,4 +23,10 @@ public class Constants {
 	public static String MAX_IDLE 					= "MAX_IDLE";
 	public static String SOCKET_TO 					= "SOCKET_TO";
 	public static String SOCKET_CONNECT_TO 			= "SOCKET_CONNECT_TO";
+	public static Boolean SEMANTICSEARCH 			= false;
+	
+	public static final String KEY_DOC_SM 			= "doc_sm";
+	public static final String KEY_DOC_NSM 			= "doc_nsm";
+	public static final String KEY_TOTAL_DOCUMENT_SM 	= "totaldocument_sm";
+	public static final String KEY_TOTAL_DOCUMENT_NSM 	= "totaldocument_nsm";
 }
