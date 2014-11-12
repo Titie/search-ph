@@ -1,6 +1,6 @@
 package com.search.crawler.utils;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.htmlparser.Node;
 import org.htmlparser.nodes.RemarkNode;
 import org.htmlparser.nodes.TagNode;
@@ -11,7 +11,6 @@ import org.htmlparser.util.NodeList;
 
 /**
  * This class encapsulates data of an HTML DOM node that is extracted by HTMLParser
- * @author TruongDX
  *
  */
 public class HTMLNode {
