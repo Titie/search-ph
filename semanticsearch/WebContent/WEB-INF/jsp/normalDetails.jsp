@@ -11,8 +11,12 @@
 <body style="margin-top: 20px;margin-left: 10px;">
 <div class="container">
 <img src="${contextPath}/css/images/Search-History.jpg" alt="" width="130px" height="130px" class="logo"> 
+<br/>
+<br/>
+<br/>
+Tìm kiếm theo từ khóa
 	<div class="formSearch">
-		<s:form action="search"  method="GET" enctype="multipart/form-data" accept-charset="UTF-8">
+		<s:form action="normalSearch"  method="GET" enctype="multipart/form-data" accept-charset="UTF-8">
 			<table>
 				<tr>
 					<td >
