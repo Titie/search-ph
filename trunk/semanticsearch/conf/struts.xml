@@ -19,9 +19,15 @@
 			<result name="success">/WEB-INF/jsp/normalSearch.jsp</result>
 		</action>
 		
-		<action name="details" class="com.search.action.SearchAction" method="details">
-			<result name="success">/WEB-INF/jsp/details.jsp</result>
+		<action name="normalDetails" class="com.search.action.SearchAction" method="details">
+			<result name="success">/WEB-INF/jsp/normalDetails.jsp</result>
 			<result name="error">/WEB-INF/jsp/notFound.jsp</result>
 		</action>
+		
+		<action name="semanticDetails" class="com.search.action.SearchAction" method="details">
+			<result name="success">/WEB-INF/jsp/semanticDetails.jsp</result>
+			<result name="error">/WEB-INF/jsp/notFound.jsp</result>
+		</action>
+		
 	</package>
 </struts>
