@@ -5,3 +5,8 @@ http://www.codeforest.net/how-to-install-memcached-on-windows-machine
 
 Tomcat configuration UTF-8
 edit file server.xml: <Connector URIEncoding="UTF-8" connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
+
+
+tai lieu tham khao
+http://dulich2009.googlecode.com/svn/trunk/%20dulich2009/Analysis_Design/Tai%20lieu%20dep/
+http://doc.edu.vn/tai-lieu/luan-van-tim-hieu-ve-search-engine-va-xay-dung-ung-dung-minh-hoa-cho-search-engine-tieng-viet-53752/
