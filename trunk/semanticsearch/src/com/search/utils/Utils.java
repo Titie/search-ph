@@ -149,7 +149,7 @@ public class Utils {
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
 
-			String sql = "SELECT id, url, title, content from document where id < 100";
+			String sql = "SELECT id, url, title, content from document";
 			ResultSet rs = stmt.executeQuery(sql);
 			// STEP 5: Extract data from result set
 			while (rs.next()) {
