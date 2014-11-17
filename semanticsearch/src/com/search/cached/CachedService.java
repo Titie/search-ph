@@ -13,9 +13,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.search.dao.DataAccessManager;
 import com.search.model.Document;
 import com.search.utils.Constants;
-import com.search.utils.Utils;
 
 /**
  * 
@@ -51,7 +51,7 @@ public class CachedService {
 	
 	public static void saveDocumentIntoMemcached() {
 		if (Constants.SEARCH_CONFIG.toLowerCase().contains("true")) {
-			List<Document> documents 	= Utils.loadDataFromDB(true);
+			List<Document> documents 	= DataAccessManager.loadDataFromDB(true);
 			for (int i = 0; i < documents.size(); i++) {
 				System.out.println("SAVE DOCUMENT ID = " + i + " INTO THE MEMCACHED");
 				SemantichSearchCached.getInstance().set(Constants.KEY_DOC_SM + i, documents.get(i));
@@ -61,7 +61,7 @@ public class CachedService {
 		
 		if (Constants.SEARCH_CONFIG.toLowerCase().contains("false")) {
 			Constants.SEMANTICSEARCH 	= false;
-			List<Document> documents 	= Utils.loadDataFromDB(false);
+			List<Document> documents 	= DataAccessManager.loadDataFromDB(false);
 			for (int i = 0; i < documents.size(); i++) {
 				System.out.println("SAVE DOCUMENT ID = " + i + " INTO THE MEMCACHED");
 				SemantichSearchCached.getInstance().set(Constants.KEY_DOC_NSM + i, documents.get(i));
