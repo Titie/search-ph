@@ -1,11 +1,10 @@
-package com.search.action;
+package com.search.tfidf;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import com.search.model.Document;
-import com.search.tfidf.TFIDF;
 
 
 /**

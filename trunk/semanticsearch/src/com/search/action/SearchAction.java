@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.search.cached.CachedService;
 import com.search.model.Document;
+import com.search.tfidf.SearchDocument;
 import com.search.tfidf.TFIDF;
 import com.search.utils.Utils;
 
