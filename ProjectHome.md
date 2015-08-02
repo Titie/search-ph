@@ -1,0 +1,1 @@
+This project is created to study about semantic search engine.
